@@ -39,7 +39,7 @@ export default function FinalCTA() {
             {get("home", "finalCta", "primary_button", "Reserva Tu Show Hoy")}
           </Link>
           <a
-            href="tel:+19145272616"
+            href="https://wa.me/19145272616"
             className="whitespace-nowrap bg-[#FACC15] hover:bg-[#E5B314] text-[#111111] font-bold px-10 py-4 rounded-full text-base transition-colors cursor-pointer flex items-center justify-center gap-2"
           >
             <i className="ri-phone-line"></i>{get("home", "finalCta", "phone_button", "(914) 527-2616")}

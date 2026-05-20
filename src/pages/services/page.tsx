@@ -36,14 +36,14 @@ const servicesFirst = [
   {
     title: "Party Poppers",
     desc: "Vibrantes explosiones de party poppers que cubren a los invitados con serpentinas y confeti colorido. El efecto sorpresa perfecto para cumpleaños, bodas y celebraciones de hitos especiales.",
-    img: "https://readdy.ai/api/search-image?query=Colorful%20party%20poppers%20exploding%20with%20confetti%20streamers%20at%20a%20lively%20nightclub%20celebration%20with%20dramatic%20blue%20and%20yellow%20neon%20lighting%20and%20energetic%20crowd%20having%20fun&width=640&height=360&seq=map14&orientation=landscape",
+    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7",
     icon: "ri-flashlight-line",
   },
 ];
 
 const servicesSecond = [
   {
-    title: "Bodas",
+    title: "Bodas y Eventos",
     desc: "Entretenimiento de lujo para el día más importante de tu vida. Shows de robot LED, CO2, confeti, DJ privado y muñecos cabezones para que tu boda sea la celebración que todos recuerden para siempre.",
     img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68",
     icon: "ri-heart-3-line",
@@ -51,7 +51,7 @@ const servicesSecond = [
   {
     title: "Muñecos Cabezones",
     desc: "Divertidos personajes con cabezas gigantes de artistas famosos e iconos pop que recorren tu evento, bailan con los invitados y crean los momentos más compartidos en fotos de toda la noche.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/29295c48-a9ff-4b25-ae66-12a6b5e33085_magnific_me-puedes-dar-exactamente_3010333418-3.png?v=ce1237072a1d7806122d911e0b83c1af",
+    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png",
     icon: "ri-emotion-laugh-line",
   },
   {
@@ -61,22 +61,22 @@ const servicesSecond = [
     icon: "ri-music-2-line",
   },
   {
-    title: "Fiestas para Toda Ocasión",
-    desc: "Paquetes de entretenimiento personalizados para cualquier tipo de celebración — ya sea un cumpleaños, aniversario, graduación o reunión familiar. Traemos la energía que se ajusta a tu ambiente.",
-    img: "https://readdy.ai/api/search-image?query=Elegant%20private%20party%20celebration%20in%20a%20beautifully%20decorated%20venue%20with%20ambient%20blue%20LED%20lighting%20and%20guests%20dancing%20and%20enjoying%20themselves%20with%20festive%20atmosphere%20colorful%20confetti%20and%20balloons&width=640&height=360&seq=map17&orientation=landscape",
-    icon: "ri-home-smile-line",
+    title: "Dry ice y Maquina de Niebla Baja",
+    desc: "Efectos atmosféricos espectaculares con hielo seco y máquina de niebla baja que transforman cualquier espacio en un escenario de ensueño. Perfecto para entradas dramáticas, primeros bailes y momentos mágicos que dejan a tus invitados sin aliento.",
+    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef",
+    icon: "ri-cloud-line",
   },
   {
-    title: "Eventos Privados",
-    desc: "Entretenimiento exclusivo para tu evento privado con performers robots LED, efectos especiales y servicio personalizado. Trabajamos contigo para crear un show único que tus invitados nunca olvidarán.",
-    img: "https://readdy.ai/api/search-image?query=Exclusive%20private%20event%20celebration%20in%20a%20luxury%20venue%20with%20dramatic%20blue%20LED%20uplighting%20and%20professional%20performers%20entertaining%20guests%20confetti%20falling%20and%20energetic%20atmosphere&width=640&height=360&seq=map18&orientation=landscape",
-    icon: "ri-shield-star-line",
+    title: "Chispas frías",
+    desc: "Fuegos artificiales de interior seguros que lanzan brillantes chispas frías hacia el cielo — sin humo, sin olor y completamente seguros para interiores. El efecto perfecto para cortes de pastel, entradas épicas y momentos climáticos.",
+    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889",
+    icon: "ri-fire-line",
   },
   {
-    title: "Clubs",
-    desc: "Transforma la noche de tu nightclub con shows completos de robot LED, bazucas de CO2 y efectos de alto impacto. Sabemos cómo leer a la multitud y soltar el momento perfecto para mantener la energía al máximo.",
-    img: "https://readdy.ai/api/search-image?query=High%20energy%20nightclub%20scene%20with%20DJ%20booth%20and%20colorful%20LED%20light%20beams%20cutting%20through%20fog%20with%20crowd%20celebrating%20and%20hands%20in%20the%20air%20under%20blue%20neon%20lights%20and%20confetti%20explosions&width=640&height=360&seq=map19&orientation=landscape",
-    icon: "ri-vip-crown-line",
+    title: "Máquina de fotobooth 360",
+    desc: "La máquina de fotobooth 360 que captura videos épicos en cámara lenta desde todos los ángulos. Tus invitados se paran en una plataforma giratoria mientras la cámara graba tomas espectaculares en 360 grados — los recuerdos más virales de tu evento.",
+    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png",
+    icon: "ri-camera-lens-line",
   },
 ];
 
@@ -165,8 +165,8 @@ export default function ServicesPage() {
           <div className="absolute inset-0">
             <img
               alt="Reserva MAP Robot Entertainment show de robot LED para tu próximo evento"
-              className="w-full h-full object-cover object-top"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/46454922-26f6-41a4-8ed8-11dcb4e51d37_472366821_571862878980890_353559173388661885_n.jpg?v=668f06be35cbc91052be1dd38d91bc21"
+              className="w-full h-full object-cover object-[center_20%]"
+              src="https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/70503375736b6ace7fe0112e684a5146.png"
             />
             <div className="absolute inset-0 bg-[#111111]/80" />
           </div>

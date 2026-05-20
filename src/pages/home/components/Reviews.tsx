@@ -171,12 +171,12 @@ export default function Reviews() {
 
         <div className="text-center mt-4 mb-10">
           <a
-            href="https://www.google.com/search?q=MAP+Robot+Entertainment+Port+Chester+NY"
+            href="https://www.facebook.com/profile.php?id=100085300897269&sk=reviews"
             target="_blank"
             rel="nofollow noopener noreferrer"
             className="inline-flex items-center gap-2.5 whitespace-nowrap bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 cursor-pointer"
           >
-            Déjanos una Reseña de 5 Estrellas en Google
+            Déjanos una Reseña de 5 Estrellas en Facebook
           </a>
           <p className="text-gray-500 text-xs mt-3">
             Tu opinión nos ayuda a crecer y a servirte mejor.

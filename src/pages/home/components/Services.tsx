@@ -8,7 +8,7 @@ export default function Services() {
 
   const servicesFeatured = getMedia(
     "services-featured",
-    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/46454922-26f6-41a4-8ed8-11dcb4e51d37_472366821_571862878980890_353559173388661885_n.jpg?v=668f06be35cbc91052be1dd38d91bc21"
+    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/0f15a774-36ab-42eb-aec3-067b8298c551_IMG_0657.jpg?v=b2b0b1c6477344d216101eafc86a43e1"
   );
 
   const services = [
@@ -17,7 +17,7 @@ export default function Services() {
       desc: get("home", "services", "card1_desc", "Performers robots de alta energía cubiertos de luces LED deslumbrantes que bailan, interactúan y electrizan a la multitud. Perfecto para clubs, bodas y eventos corporativos."),
       img: getMedia(
         "services-card-1",
-        "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f20d1c73-1b3c-4908-84fe-88ea081a8666_677149541_928146753372013_7091196280485826080_n.jpg?v=c83fc433256257c5c53af1374d2d15f4"
+        "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/c65a3c04-2665-4289-8f3c-73f44d3fe145_magnific_creame-una-foto-en-donde-_3004827050-1.jpg?v=e4879d4e6c67d0483305c74924748f13"
       ),
       icon: "ri-lightbulb-flash-line",
     },
@@ -26,7 +26,7 @@ export default function Services() {
       desc: get("home", "services", "card2_desc", "¡La hora de fiesta definitiva! Performers de alta energía, locos accesorios y acción sin parar que convierten la pista en un carnaval de diversión inolvidable."),
       img: getMedia(
         "services-card-2",
-        "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/ad4c1e98-5c5b-4273-9aac-6829e12c5afa_474682414_578610134992345_9182123045525748269_n.jpg?v=a41920e8eab7525a3d1d17adf96a1078"
+        "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/70503375736b6ace7fe0112e684a5146.png"
       ),
       icon: "ri-fire-line",
     },
@@ -35,7 +35,7 @@ export default function Services() {
       desc: get("home", "services", "card3_desc", "Explosiones dramáticas de CO2 y lluvias de confeti colorido sobre la multitud. Crea momentos impresionantes que asombran a tus invitados y iluminan las redes sociales."),
       img: getMedia(
         "services-card-3",
-        "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258"
+        "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/dc7c6321-cd9a-40b2-8cfe-d5d94b9d4c2a_magnific_me-encanta-esta-foto-pero_xgeEqCujfW.png?v=a3906bdabfaf8f8758ab756895856eaa"
       ),
       icon: "ri-vip-diamond-line",
     },

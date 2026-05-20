@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 mt-5">
               <a
-                href="https://www.tiktok.com/@maprobot?t=8jjMfsFBnDf&r=1"
+                href="https://www.tiktok.com/@m.a.p.robot"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-[#FACC15] hover:bg-[#E5B314] transition-colors cursor-pointer"
@@ -34,7 +34,7 @@ export default function Footer() {
                 <i className="ri-tiktok-fill text-base text-[#111111]"></i>
               </a>
               <a
-                href="https://www.instagram.com/m.a.p.robot"
+                href="https://www.instagram.com/map_robot_entertaimen/"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-[#FACC15] hover:bg-[#E5B314] transition-colors cursor-pointer"
@@ -42,7 +42,15 @@ export default function Footer() {
                 <i className="ri-instagram-line text-base text-[#111111]"></i>
               </a>
               <a
-                href="tel:+19145272616"
+                href="https://www.facebook.com/profile.php?id=100085300897269"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-[#FACC15] hover:bg-[#E5B314] transition-colors cursor-pointer"
+              >
+                <i className="ri-facebook-fill text-base text-[#111111]"></i>
+              </a>
+              <a
+                href="https://wa.me/19145272616"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-[#FACC15] hover:bg-[#E5B314] transition-colors cursor-pointer"
               >
                 <i className="ri-phone-line text-base text-[#111111]"></i>
@@ -101,8 +109,9 @@ export default function Footer() {
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Party Poppers</Link></li>
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Muñecos Cabezones</Link></li>
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">DJ Privado</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Eventos Privados</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Clubs</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Dry Ice & Niebla Baja</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Chispas Frías</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Photobooth 360</Link></li>
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Bodas</Link></li>
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Quinceañeras</Link></li>
               <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Eventos Corporativos</Link></li>
@@ -128,6 +137,9 @@ export default function Footer() {
                   <a href="tel:+19145272616" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer block">
                     (914) 527-2616
                   </a>
+                  <a href="tel:+19144260484" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer block">
+                    (914) 426-0484
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -140,10 +152,36 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-5 h-5 flex items-center justify-center mt-0.5">
+                  <i className="ri-instagram-line text-[#4facec]"></i>
+                </div>
+                <a
+                  href="https://www.instagram.com/map_robot_entertaimen/"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer"
+                >
+                  @map_robot_entertaimen
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 flex items-center justify-center mt-0.5">
+                  <i className="ri-facebook-fill text-[#4facec]"></i>
+                </div>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100085300897269"
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer"
+                >
+                  MAP Robot Entertainment
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 flex items-center justify-center mt-0.5">
                   <i className="ri-tiktok-line text-[#4facec]"></i>
                 </div>
                 <a
-                  href="https://www.tiktok.com/@maprobot?t=8jjMfsFBnDf&r=1"
+                  href="https://www.tiktok.com/@m.a.p.robot"
                   target="_blank"
                   rel="nofollow noopener noreferrer"
                   className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer"

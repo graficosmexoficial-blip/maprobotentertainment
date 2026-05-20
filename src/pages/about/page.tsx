@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useSiteMedia } from "@/hooks/useSiteMedia";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
 
@@ -28,6 +29,17 @@ const values = [
 export default function About() {
   const [openFaq, setOpenFaq] = useState(0);
   const { get } = useSiteContent();
+  const { getMedia } = useSiteMedia("ABOUT");
+
+  const faqImage = getMedia(
+    "about-faq-image",
+    "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/bd4ecea6cec6055361e87941d236b84c.jpeg"
+  );
+
+  const storyImage = getMedia(
+    "about-story-image",
+    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/976d153f-253a-4ff7-ad66-33b4f80239b2_IMG_0358.jpg?v=30d054eae7a9c8353fae3ac5284f7817"
+  );
 
   return (
     <div className="min-h-screen bg-[#0d0d0d]">
@@ -117,28 +129,11 @@ export default function About() {
                 <div className="relative">
                   <div className="absolute -top-4 -right-4 w-full h-full bg-[#4facec]/10 rounded-2xl" />
                   <div className="relative w-[380px] h-[480px] rounded-2xl overflow-hidden">
-                    <video
-                      playsInline
-                      preload="metadata"
-                      muted
-                      autoPlay
-                      loop
-                      aria-label="MAP Robot Entertainment video de performance"
-                      className="w-full h-full object-cover object-center"
-                      src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
+                    <img
+                        alt="MAP Robot Entertainment performance en vivo"
+                        className="w-full h-full object-cover object-top"
+                        src={storyImage}
                     />
-                    <button
-                      className="absolute inset-0 flex items-center justify-center bg-black/40 cursor-pointer group"
-                      aria-label="Reproducir video"
-                      onClick={() => {
-                        const v = document.querySelector("video") as HTMLVideoElement;
-                        if (v) v.play();
-                      }}
-                    >
-                      <div className="w-16 h-16 md:w-20 md:h-20 bg-[#4facec] rounded-full flex items-center justify-center transition-transform group-hover:scale-110 shadow-lg">
-                        <i className="ri-play-fill text-white text-3xl md:text-4xl" />
-                      </div>
-                    </button>
                   </div>
                   <div className="absolute -bottom-4 -left-4 bg-[#4facec] text-white rounded-xl px-5 py-3 text-center">
                     <p className="text-xs font-semibold uppercase tracking-widest text-white/80">Est.</p>
@@ -176,7 +171,7 @@ export default function About() {
                 {get("about", "ctaBanner", "primary_button", "Habla Con Nuestro Equipo")} <i className="ri-arrow-right-line" />
               </Link>
               <a
-                href="tel:+19145272616"
+                href="https://wa.me/19145272616"
                 className="inline-flex items-center gap-2 whitespace-nowrap bg-[#FACC15] hover:bg-[#E5B314] text-[#111111] font-bold px-10 py-4 rounded-full transition-all cursor-pointer hover:scale-105"
               >
                 <i className="ri-phone-line" />{get("about", "ctaBanner", "phone_button", "(914) 527-2616")}
@@ -237,7 +232,7 @@ export default function About() {
                 <img
                   alt="MAP Robot Entertainment performance en vivo en un evento de Nueva York"
                   className="w-full h-full object-cover object-top"
-                  src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/46454922-26f6-41a4-8ed8-11dcb4e51d37_472366821_571862878980890_353559173388661885_n.jpg?v=668f06be35cbc91052be1dd38d91bc21"
+                  src={faqImage}
                 />
               </div>
             </div>

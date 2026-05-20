@@ -1,13 +1,41 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { supabase } from "@/lib/supabase";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [charCount, setCharCount] = useState(0);
   const { get } = useSiteContent();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError("");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: String(formData.get("name") || ""),
+      phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
+      service_needed: String(formData.get("serviceNeeded") || ""),
+      message: String(formData.get("message") || ""),
+      source: "contact-form",
+      status: "new",
+    });
+
+    setSubmitting(false);
+    if (error) {
+      setSubmitError("Hubo un error al enviar. Por favor intenta de nuevo.");
+    } else {
+      setSubmitted(true);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0d0d0d]">
@@ -40,7 +68,7 @@ export default function Contact() {
         <section className="w-full bg-[#1a1a1a] border-t-4 border-[#4facec]">
           <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/20">
             <a
-              href={`tel:${get("contact", "info", "phone", "+19145272616").replace(/\D/g, "")}`}
+              href={`https://wa.me/${get("contact", "info", "phone", "+19145272616").replace(/\D/g, "")}`}
               className="group flex items-center gap-5 px-8 py-7 cursor-pointer hover:bg-white/10 transition-colors"
             >
               <div className="w-12 h-12 flex items-center justify-center bg-white/20 rounded-full shrink-0 group-hover:bg-[#FACC15] transition-all duration-300">
@@ -52,6 +80,7 @@ export default function Contact() {
                 </p>
                 <p className="text-white font-bold text-base mt-0.5">{get("contact", "info", "phone", "(914) 527-2616")}</p>
                 <p className="text-white/70 text-xs mt-0.5">{get("contact", "info", "phone_sub", "Siempre Disponible")}</p>
+                <p className="text-white/50 text-xs mt-1">Alt: (914) 426-0484</p>
               </div>
             </a>
             <a
@@ -69,7 +98,7 @@ export default function Contact() {
               </div>
             </a>
             <a
-              href="https://www.tiktok.com/@maprobot?t=8jjMfsFBnDf&r=1"
+              href="https://www.tiktok.com/@m.a.p.robot"
               target="_blank"
               rel="nofollow noopener noreferrer"
               className="group flex items-center gap-5 px-8 py-7 cursor-pointer hover:bg-white/10 transition-colors"
@@ -177,25 +206,9 @@ export default function Contact() {
                     </div>
                   ) : (
                     <form
-                      data-readdy-form={true}
                       id="contact-page-form"
                       className="flex flex-col gap-5"
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        const form = e.currentTarget;
-                        const formData = new FormData(form);
-                        fetch(form.action, {
-                          method: form.method,
-                          body: new URLSearchParams(formData as any),
-                          headers: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                          },
-                        })
-                          .then(() => setSubmitted(true))
-                          .catch(() => setSubmitted(true));
-                      }}
-                      action="https://readdy.ai/api/form/d85pjfru8to27s7pbl3g"
-                      method="POST"
+                      onSubmit={handleSubmit}
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
@@ -241,8 +254,9 @@ export default function Contact() {
                           <select
                             name="serviceNeeded"
                             className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-[#4facec] transition-colors cursor-pointer"
+                            defaultValue=""
                           >
-                            <option value="" disabled selected>
+                            <option value="" disabled>
                               Selecciona un Servicio
                             </option>
                             <option value="Show de Robot LED">Show de Robot con Luces LED</option>
@@ -275,12 +289,16 @@ export default function Contact() {
                           required
                         />
                       </div>
+                      {submitError && (
+                        <p className="text-red-500 text-xs text-center">{submitError}</p>
+                      )}
                       <button
                         type="submit"
+                        disabled={submitting}
                         className="whitespace-nowrap w-full bg-[#4facec] hover:bg-[#3d9ce6] disabled:opacity-60 text-white font-bold py-4 rounded-lg text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
                       >
                         <i className="ri-send-plane-line" />
-                        Enviar Mensaje
+                        {submitting ? "Enviando..." : "Enviar Mensaje"}
                       </button>
                     </form>
                   )}

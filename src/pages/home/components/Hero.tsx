@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { supabase } from "@/lib/supabase";
 
 export default function Hero() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const { get } = useSiteContent();
   const { getMedia } = useSiteMedia("INICIO");
 
@@ -12,6 +15,30 @@ export default function Hero() {
     "hero-video",
     "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
   );
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError("");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    const { error } = await supabase.from("contact_submissions").insert({
+      name: String(formData.get("fullName") || ""),
+      phone: String(formData.get("phone") || ""),
+      email: String(formData.get("email") || ""),
+      service_needed: String(formData.get("serviceNeeded") || ""),
+      source: "hero-form",
+      status: "new",
+    });
+
+    setSubmitting(false);
+    if (error) {
+      setSubmitError("Hubo un error al enviar. Por favor intenta de nuevo.");
+    } else {
+      setSubmitted(true);
+    }
+  };
 
   return (
     <section className="relative w-full min-h-[100vh] flex items-center overflow-hidden">
@@ -94,25 +121,9 @@ export default function Hero() {
                 </div>
               ) : (
                 <form
-                  data-readdy-form="true"
                   id="hero-estimate-form"
                   className="flex flex-col gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    const form = e.currentTarget;
-                    const formData = new FormData(form);
-                    fetch(form.action, {
-                      method: form.method,
-                      body: new URLSearchParams(formData as any),
-                      headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                      },
-                    })
-                      .then(() => setSubmitted(true))
-                      .catch(() => setSubmitted(true));
-                  }}
-                  action="https://readdy.ai/api/form/d85pjfru8to27s7pbl3g"
-                  method="POST"
+                  onSubmit={handleSubmit}
                 >
                   <div>
                     <label className="block text-white text-sm font-semibold mb-1.5">
@@ -157,8 +168,9 @@ export default function Hero() {
                       name="serviceNeeded"
                       className="w-full bg-[#1a1a1a] border border-white/20 text-white text-sm rounded-lg px-4 py-3 outline-none focus:border-[#4facec] transition-all cursor-pointer"
                       required
+                      defaultValue=""
                     >
-                      <option value="" disabled selected>
+                      <option value="" disabled>
                         Selecciona un Servicio
                       </option>
                       <option value="Show de Robot LED">Show de Robot con Luces LED</option>
@@ -172,11 +184,16 @@ export default function Hero() {
                       <option value="Club">Club</option>
                     </select>
                   </div>
+                  {submitError && (
+                    <p className="text-red-400 text-xs text-center">{submitError}</p>
+                  )}
                   <button
                     type="submit"
+                    disabled={submitting}
                     className="whitespace-nowrap w-full bg-[#4facec] hover:bg-[#3d9ce6] disabled:opacity-60 text-white font-bold py-4 rounded-lg text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer mt-1"
                   >
-                    <i className="ri-send-plane-line text-base"></i>Solicitar Tu Show
+                    <i className="ri-send-plane-line text-base"></i>
+                    {submitting ? "Enviando..." : "Solicitar Tu Show"}
                   </button>
                 </form>
               )}

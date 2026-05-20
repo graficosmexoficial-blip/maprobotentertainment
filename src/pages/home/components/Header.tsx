@@ -69,7 +69,7 @@ export default function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+19145272616"
+              href="https://wa.me/19145272616"
               className="flex items-center gap-2 whitespace-nowrap bg-[#4facec] hover:bg-[#3d9ce6] text-white text-lg font-bold px-7 py-3.5 rounded-full transition-colors duration-200 cursor-pointer"
             >
               <i className="ri-phone-line"></i> (914) 527-2616

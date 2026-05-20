@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminLogin from "./components/AdminLogin";
 import AdminSidebar from "./components/AdminSidebar";
 import AdminEditor from "./components/AdminEditor";
 import AdminMediaManager from "./components/AdminMediaManager";
 
 export default function AdminPage() {
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const [activeSection, setActiveSection] = useState("hero-stats");
   const [ready, setReady] = useState(false);
@@ -24,10 +26,11 @@ export default function AdminPage() {
   const handleLogout = () => {
     localStorage.removeItem("admin_auth");
     setLoggedIn(false);
+    navigate("/");
   };
 
   const goToSite = () => {
-    window.location.href = window.location.origin + window.location.pathname;
+    navigate("/");
   };
 
   if (!ready) {
@@ -45,7 +48,10 @@ export default function AdminPage() {
   return (
     <div className="h-screen bg-[#0d0d0d] text-white flex flex-col overflow-hidden">
       <header className="h-14 bg-[#111111] border-b border-white/10 flex items-center justify-between px-5 shrink-0">
-        <div className="flex items-center gap-3">
+        <div
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
           <img
             alt="MAP Robot Entertainment"
             className="h-8 w-auto object-contain"

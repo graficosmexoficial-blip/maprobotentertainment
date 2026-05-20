@@ -39,7 +39,7 @@ export default function CTA() {
             <i className="ri-message-3-line"></i>{get("home", "cta", "primary_button", "Habla Con Nuestro Equipo")}
           </Link>
           <a
-            href="tel:+19145272616"
+            href="https://wa.me/19145272616"
             className="whitespace-nowrap bg-[#FACC15] hover:bg-[#E5B314] text-[#111111] font-bold px-8 py-4 rounded-full text-sm transition-all cursor-pointer flex items-center gap-2"
           >
             <i className="ri-phone-line"></i>{get("home", "cta", "phone_button", "(914) 527-2616")}

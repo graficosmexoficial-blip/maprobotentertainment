@@ -6,6 +6,8 @@ export default function WhyChooseUs() {
   const { get } = useSiteContent();
   const { getMedia } = useSiteMedia("INICIO");
   const [isVisible, setIsVisible] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,6 +23,16 @@ export default function WhyChooseUs() {
     return () => observer.disconnect();
   }, []);
 
+  const handlePlayPause = () => {
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play().catch(() => {});
+    }
+    setIsPlaying(!isPlaying);
+  };
+
   const bars = [
     { label: "Tasa de Satisfacción del Cliente", value: 99 },
     { label: "Tasa de Éxito en Eventos", value: 100 },
@@ -30,25 +42,29 @@ export default function WhyChooseUs() {
 
   const videoUrl = getMedia(
     "why-choose-video",
-    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
+    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/7e655407-9d60-49fb-8cdb-c1ecc057ad71_42324-1.mp4?v=3aac3733b68bbf4690f0bb3c9c50c3db"
   );
 
   return (
     <section className="overflow-hidden" ref={ref}>
       <div className="flex flex-col lg:flex-row min-h-[520px]">
-        <div className="relative w-full lg:w-1/2 min-h-[340px] lg:min-h-[520px] bg-black flex items-center justify-center cursor-pointer group">
+        <div className="relative w-full lg:w-1/2 min-h-[340px] lg:min-h-[520px] bg-black flex items-center justify-center cursor-pointer group" onClick={handlePlayPause}>
           <video
+            ref={videoRef}
             src={videoUrl}
             className="w-full h-full object-cover object-center"
             playsInline
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            onEnded={() => setIsPlaying(false)}
           />
-          <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100">
+          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isPlaying ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
             <div className="absolute inset-0 bg-black/30"></div>
             <button
               className="relative z-10 w-20 h-20 flex items-center justify-center bg-[#4facec] hover:bg-[#3d9ce6] rounded-full transition-all duration-200 cursor-pointer"
-              aria-label="Reproducir video"
+              aria-label={isPlaying ? "Pausar video" : "Reproducir video"}
             >
-              <i className="ri-play-fill text-white text-4xl ml-1"></i>
+              <i className={`${isPlaying ? 'ri-pause-fill' : 'ri-play-fill'} text-white text-4xl ml-1`}></i>
             </button>
           </div>
           <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
