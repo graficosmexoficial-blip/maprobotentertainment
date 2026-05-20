@@ -89,7 +89,7 @@ INSERT INTO site_content (page, section, field_key, field_value, updated_at) VAL
 ('contact','info','phone','(914) 527-2616','2026-05-19 16:47:57.512227+00'),
 ('contact','info','phone_sub','Siempre Disponible','2026-05-19 16:47:57.512227+00'),
 ('contact','info','email_label','Escríbenos','2026-05-19 16:47:57.512227+00'),
-('contact','info','email','mandonaire6238@gmail.com','2026-05-19 16:47:57.512227+00'),
+('contact','info','email','andonairemiguel@gmail.com','2026-05-19 16:47:57.512227+00'),
 ('contact','info','social_label','Síguenos','2026-05-19 16:47:57.512227+00'),
 ('contact','info','social_handle','@m.a.p.robot','2026-05-19 16:47:57.512227+00'),
 ('contact','info','location_label','Nuestra Ubicación','2026-05-19 16:47:57.512227+00'),

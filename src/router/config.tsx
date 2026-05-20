@@ -6,6 +6,7 @@ import Services from "../pages/services/page";
 import Contact from "../pages/contact/page";
 import SiteManager from "../pages/site-manager/page";
 import AdminPage from "../pages/admin/page";
+import AuthCallback from "../pages/auth/callback/page";
 
 const routes: RouteObject[] = [
   {
@@ -31,6 +32,10 @@ const routes: RouteObject[] = [
   {
     path: "/admin",
     element: <AdminPage />,
+  },
+  {
+    path: "/auth/callback",
+    element: <AuthCallback />,
   },
   {
     path: "*",

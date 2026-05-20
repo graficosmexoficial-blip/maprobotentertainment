@@ -47,7 +47,7 @@ export default function UserAuthMenu() {
   const getRedirectUrl = () => {
     const base = __BASE_PATH__ || "";
     const origin = window.location.origin;
-    return `${origin}${base}/`;
+    return `${origin}${base}/auth/callback`;
   };
 
   const handleGoogleSignIn = async () => {
@@ -183,20 +183,6 @@ export default function UserAuthMenu() {
               <>
                 <div className="border-t border-white/10 my-1"></div>
                 <div className="px-3 pb-2 space-y-2">
-                  <button
-                    onClick={handleGoogleSignIn}
-                    className="w-full group flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#1a1a1a] to-[#1a1a1a] border border-white/10 hover:border-[#DB4437]/40 hover:from-[#DB4437]/10 hover:to-[#DB4437]/5 transition-all duration-300 cursor-pointer"
-                  >
-                    <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#DB4437]/15 group-hover:bg-[#DB4437]/25 transition-colors">
-                      <i className="ri-google-fill text-[#DB4437] text-lg"></i>
-                    </div>
-                    <div className="text-left">
-                      <p className="text-white text-sm font-semibold">Iniciar con Google</p>
-                      <p className="text-gray-500 text-[11px]">Accede con tu cuenta Google</p>
-                    </div>
-                    <i className="ri-arrow-right-s-line text-gray-600 group-hover:text-[#DB4437] ml-auto transition-colors"></i>
-                  </button>
-
                   <button
                     onClick={() => openAuth("login")}
                     className="w-full group flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#1a1a1a] to-[#1a1a1a] border border-white/10 hover:border-[#4facec]/40 hover:from-[#4facec]/10 hover:to-[#4facec]/5 transition-all duration-300 cursor-pointer"
@@ -376,22 +362,7 @@ export default function UserAuthMenu() {
               </button>
             </form>
 
-            <div className="mt-5 pt-4 border-t border-white/10">
-              <button
-                onClick={() => {
-                  setShowAuthModal(false);
-                  handleGoogleSignIn();
-                }}
-                className="w-full group flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-[#1a1a1a] to-[#1a1a1a] border border-white/10 hover:border-[#DB4437]/40 hover:from-[#DB4437]/10 hover:to-[#DB4437]/5 transition-all duration-300 cursor-pointer"
-              >
-                <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#DB4437]/15 group-hover:bg-[#DB4437]/25 transition-colors">
-                  <i className="ri-google-fill text-[#DB4437] text-lg"></i>
-                </div>
-                <div className="text-left">
-                  <p className="text-white text-sm font-semibold">Continuar con Google</p>
-                </div>
-              </button>
-            </div>
+
           </div>
         </div>
       )}

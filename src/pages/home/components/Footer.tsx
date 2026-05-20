@@ -146,8 +146,8 @@ export default function Footer() {
                 <div className="w-5 h-5 flex items-center justify-center mt-0.5">
                   <i className="ri-mail-line text-[#4facec]"></i>
                 </div>
-                <a href="mailto:mandonaire6238@gmail.com" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer block">
-                  mandonaire6238@gmail.com
+                <a href="mailto:andonairemiguel@gmail.com" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer block">
+                  andonairemiguel@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

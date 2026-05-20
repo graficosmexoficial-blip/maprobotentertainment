@@ -84,7 +84,7 @@ export default function Contact() {
               </div>
             </a>
             <a
-              href={`mailto:${get("contact", "info", "email", "mandonaire6238@gmail.com")}`}
+              href={`mailto:${get("contact", "info", "email", "andonairemiguel@gmail.com")}`}
               className="group flex items-center gap-5 px-8 py-7 cursor-pointer hover:bg-white/10 transition-colors"
             >
               <div className="w-12 h-12 flex items-center justify-center bg-white/20 rounded-full shrink-0 group-hover:bg-[#FACC15] transition-all duration-300">
@@ -94,7 +94,7 @@ export default function Contact() {
                 <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
                   {get("contact", "info", "email_label", "Escríbenos")}
                 </p>
-                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "email", "mandonaire6238@gmail.com")}</p>
+                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "email", "andonairemiguel@gmail.com")}</p>
               </div>
             </a>
             <a
