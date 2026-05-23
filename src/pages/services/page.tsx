@@ -1,86 +1,10 @@
 import { Link } from "react-router-dom";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const servicesFirst = [
-  {
-    title: "Show de Robot LED",
-    desc: "Performers robots de alta energía cubiertos de luces LED deslumbrantes que bailan, interactúan y electrizan a la multitud. Nuestro show insignia trae energía futurista a cualquier evento — bodas, clubs y eventos corporativos.",
-    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/d588e5ab54f9c0ab3017c9e08a1bcce8.png",
-    icon: "ri-lightbulb-flash-line",
-  },
-  {
-    title: "Hora Loca",
-    desc: "¡La explosión de la hora de fiesta definitiva! Performers de alta energía, locos accesorios, acción sin parar, efectos LED e interacción con la multitud que convierten la pista en un carnaval de diversión inolvidable.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/03ce3bf9-bd5c-4f26-9585-c91c72f0252c_IMG_0629.jpg?v=fcd672a7ce915086a643c785a64a0648",
-    icon: "ri-fire-line",
-  },
-  {
-    title: "15's Años",
-    desc: "Celebraciones de quinceañeras llenas de magia y energía con shows de robot LED, bazuca de CO2, confeti y hora loca. Convierte la entrada de la quinceañera en un momento épico e inolvidable que ella y sus invitados nunca olvidarán.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/4e58eb80-f950-4a99-b00a-0d31462e6265_IMG_0248.jpg?v=fa1f93661f5df6b6b9c58559c3d00777",
-    icon: "ri-cake-3-line",
-  },
-  {
-    title: "Bazuca de CO2",
-    desc: "Explosiones dramáticas de jets de CO2 frío que atraviesan la pista de baile. Perfecto para drops, momentos climáticos y crear un factor sorpresa instantáneo que hace que todos saquen sus celulares.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/250602d4-be15-46f1-b828-71cc7c4e89f9_magnific_creame-una-foto-en-donde-_3004892059-2.png?v=ec97826a62581d568be1d8f82a8d091a",
-    icon: "ri-windy-line",
-  },
-  {
-    title: "Confeti",
-    desc: "Lluvias de confeti colorido que explotan sobre la multitud en el momento perfecto — creando visuales impresionantes y escenas dignas de Instagram. Colores personalizables para combinar con la temática de tu evento.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258",
-    icon: "ri-vip-diamond-line",
-  },
-  {
-    title: "Party Poppers",
-    desc: "Vibrantes explosiones de party poppers que cubren a los invitados con serpentinas y confeti colorido. El efecto sorpresa perfecto para cumpleaños, bodas y celebraciones de hitos especiales.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7",
-    icon: "ri-flashlight-line",
-  },
-];
-
-const servicesSecond = [
-  {
-    title: "Bodas y Eventos",
-    desc: "Entretenimiento de lujo para el día más importante de tu vida. Shows de robot LED, CO2, confeti, DJ privado y muñecos cabezones para que tu boda sea la celebración que todos recuerden para siempre.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68",
-    icon: "ri-heart-3-line",
-  },
-  {
-    title: "Muñecos Cabezones",
-    desc: "Divertidos personajes con cabezas gigantes de artistas famosos e iconos pop que recorren tu evento, bailan con los invitados y crean los momentos más compartidos en fotos de toda la noche.",
-    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png",
-    icon: "ri-emotion-laugh-line",
-  },
-  {
-    title: "DJ Privado",
-    desc: "DJ profesional privado que transforma tu evento con música mezclada en vivo, luces LED sincronizadas y la energía perfecta para mantener a la pista de baile llena toda la noche. Ideal para cualquier celebración.",
-    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/e8b998673d2c6d02e5307b7a12a4c0f7.png",
-    icon: "ri-music-2-line",
-  },
-  {
-    title: "Dry ice y Maquina de Niebla Baja",
-    desc: "Efectos atmosféricos espectaculares con hielo seco y máquina de niebla baja que transforman cualquier espacio en un escenario de ensueño. Perfecto para entradas dramáticas, primeros bailes y momentos mágicos que dejan a tus invitados sin aliento.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef",
-    icon: "ri-cloud-line",
-  },
-  {
-    title: "Chispas frías",
-    desc: "Fuegos artificiales de interior seguros que lanzan brillantes chispas frías hacia el cielo — sin humo, sin olor y completamente seguros para interiores. El efecto perfecto para cortes de pastel, entradas épicas y momentos climáticos.",
-    img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889",
-    icon: "ri-fire-line",
-  },
-  {
-    title: "Máquina de fotobooth 360",
-    desc: "La máquina de fotobooth 360 que captura videos épicos en cámara lenta desde todos los ángulos. Tus invitados se paran en una plataforma giratoria mientras la cámara graba tomas espectaculares en 360 grados — los recuerdos más virales de tu evento.",
-    img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png",
-    icon: "ri-camera-lens-line",
-  },
-];
-
-function ServiceCard({ s }: { s: (typeof servicesFirst)[0] }) {
+function ServiceCard({ s }: { s: { title: string; desc: string; img: string; icon: string } }) {
+  const { t } = useLanguage();
   return (
     <div className="group relative bg-[#1a1a1a] rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#4facec]/50 transition-all duration-300">
       <div className="w-full h-52 overflow-hidden relative">
@@ -97,7 +21,7 @@ function ServiceCard({ s }: { s: (typeof servicesFirst)[0] }) {
             className="whitespace-nowrap bg-[#4facec] text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1.5"
             to="/contact"
           >
-            <i className="ri-arrow-right-circle-line" /> Cotizar
+            <i className="ri-arrow-right-circle-line" /> {t("services_get_quote")}
           </Link>
         </div>
       </div>
@@ -111,11 +35,90 @@ function ServiceCard({ s }: { s: (typeof servicesFirst)[0] }) {
 }
 
 export default function ServicesPage() {
+  const { t } = useLanguage();
+
+  const servicesFirst = [
+    {
+      title: t("service_robot_title"),
+      desc: t("service_robot_desc"),
+      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/d588e5ab54f9c0ab3017c9e08a1bcce8.png",
+      icon: "ri-lightbulb-flash-line",
+    },
+    {
+      title: t("service_hora_title"),
+      desc: t("service_hora_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/03ce3bf9-bd5c-4f26-9585-c91c72f0252c_IMG_0629.jpg?v=fcd672a7ce915086a643c785a64a0648",
+      icon: "ri-fire-line",
+    },
+    {
+      title: t("service_15_title"),
+      desc: t("service_15_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/4e58eb80-f950-4a99-b00a-0d31462e6265_IMG_0248.jpg?v=fa1f93661f5df6b6b9c58559c3d00777",
+      icon: "ri-cake-3-line",
+    },
+    {
+      title: t("service_co2_title"),
+      desc: t("service_co2_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/250602d4-be15-46f1-b828-71cc7c4e89f9_magnific_creame-una-foto-en-donde-_3004892059-2.png?v=ec97826a62581d568be1d8f82a8d091a",
+      icon: "ri-windy-line",
+    },
+    {
+      title: t("service_confeti_title"),
+      desc: t("service_confeti_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258",
+      icon: "ri-vip-diamond-line",
+    },
+    {
+      title: t("service_poppers_title"),
+      desc: t("service_poppers_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7",
+      icon: "ri-flashlight-line",
+    },
+  ];
+
+  const servicesSecond = [
+    {
+      title: t("service_bodas_title"),
+      desc: t("service_bodas_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68",
+      icon: "ri-heart-3-line",
+    },
+    {
+      title: t("service_cabezones_title"),
+      desc: t("service_cabezones_desc"),
+      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png",
+      icon: "ri-emotion-laugh-line",
+    },
+    {
+      title: t("service_dj_title"),
+      desc: t("service_dj_desc"),
+      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/e8b998673d2c6d02e5307b7a12a4c0f7.png",
+      icon: "ri-music-2-line",
+    },
+    {
+      title: t("service_dryice_title"),
+      desc: t("service_dryice_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef",
+      icon: "ri-cloud-line",
+    },
+    {
+      title: t("service_chispas_title"),
+      desc: t("service_chispas_desc"),
+      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889",
+      icon: "ri-fire-line",
+    },
+    {
+      title: t("service_photobooth_title"),
+      desc: t("service_photobooth_desc"),
+      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png",
+      icon: "ri-camera-lens-line",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-[#0d0d0d]">
       <Header />
       <main>
-        {/* Hero Banner */}
         <section className="relative pt-36 pb-16 overflow-hidden">
           <div className="absolute inset-0">
             <video
@@ -132,24 +135,22 @@ export default function ServicesPage() {
           <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
             <div className="bg-[#0d0d0d] border border-[#4facec]/40 rounded-2xl px-16 py-7 inline-block text-center border-b-4 border-[#4facec]">
               <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-widest uppercase">
-                Nuestros Servicios
+                {t("services_hero_title")}
               </h1>
             </div>
           </div>
         </section>
 
-        {/* What We Offer Header */}
         <section className="bg-[#111111] py-10 text-center">
           <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mb-2">
-            Lo Que Ofrecemos
+            {t("services_header_badge")}
           </p>
           <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            Servicios Completos de Entretenimiento Para Todo Evento
+            {t("services_header_title")}
           </h2>
           <div className="w-14 h-1 bg-[#4facec] rounded-full mx-auto mt-4" />
         </section>
 
-        {/* First Grid */}
         <section className="pt-16 pb-10 bg-[#111111]">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -160,7 +161,6 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* CTA Banner */}
         <section className="relative py-24 overflow-hidden">
           <div className="absolute inset-0">
             <img
@@ -172,22 +172,20 @@ export default function ServicesPage() {
           </div>
           <div className="relative z-10 max-w-xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-snug">
-              Reserva Tu Show de Robot LED Hoy
+              {t("services_cta_title")}
             </h2>
             <p className="text-gray-300 mt-4 text-sm leading-relaxed">
-              Obtén planificación de entretenimiento personalizada sin compromiso. Hablemos de
-              tu próximo evento y hagámoslo inolvidable.
+              {t("services_cta_subtitle")}
             </p>
             <Link
               className="whitespace-nowrap inline-flex items-center gap-2 bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-8 py-3.5 rounded-full mt-7 transition-all cursor-pointer text-sm"
               to="/contact"
             >
-              Habla Con Nuestro Equipo <i className="ri-arrow-right-line" />
+              {t("services_cta_button")} <i className="ri-arrow-right-line" />
             </Link>
           </div>
         </section>
 
-        {/* Second Grid */}
         <section className="pt-10 pb-16 bg-[#111111]">
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,7 +196,6 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
         <section className="relative py-28 overflow-hidden flex items-center justify-center mb-16">
           <div className="absolute inset-0">
             <img
@@ -211,22 +208,21 @@ export default function ServicesPage() {
           <div className="relative z-10 flex justify-center w-full px-4 md:px-6">
             <div className="bg-[#111111] border border-[#FACC15]/40 rounded-2xl px-10 py-10 max-w-lg w-full text-center">
               <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mb-3">
-                Port Chester, Nueva York
+                {t("services_location")}
               </p>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-snug">
-                ¿Listo para Iluminar Tu Evento?
+                {t("services_final_title")}
                 <br />
-                <span className="text-[#FACC15]">Empecemos.</span>
+                <span className="text-[#FACC15]">{t("services_final_title")}</span>
               </h2>
               <p className="text-gray-300 mt-4 text-sm leading-relaxed">
-                Tu evento merece ser inolvidable. Ya sea que necesites un show de robot LED,
-                efectos de CO2 o la hora loca definitiva — nuestro equipo está listo. Reserva tu show hoy.
+                {t("services_final_subtitle")}
               </p>
               <Link
                 className="whitespace-nowrap inline-flex items-center gap-2 bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-8 py-3.5 rounded-full mt-7 transition-all cursor-pointer text-sm"
                 to="/contact"
               >
-                Reserva Tu Show Hoy <i className="ri-arrow-right-line" />
+                {t("services_final_button")} <i className="ri-arrow-right-line" />
               </Link>
             </div>
           </div>

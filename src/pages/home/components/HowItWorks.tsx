@@ -1,31 +1,33 @@
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function HowItWorks() {
   const { get } = useSiteContent();
+  const { t, language } = useLanguage();
 
   const steps = [
     {
       num: "1",
-      title: get("home", "howItWorks", "step1_title", "Contacto y Cotización"),
-      desc: get("home", "howItWorks", "step1_desc", "Contáctanos por teléfono, correo o nuestro formulario. Cuéntanos sobre tu tipo de evento, fecha, lugar y el paquete de entretenimiento que deseas. Te enviaremos una cotización detallada rápidamente."),
+      title: get("home", "howItWorks", "step1_title", t("how_step1_title"), language),
+      desc: get("home", "howItWorks", "step1_desc", t("how_step1_desc"), language),
       icon: "ri-customer-service-2-line",
     },
     {
       num: "2",
-      title: get("home", "howItWorks", "step2_title", "Planifica Tu Evento"),
-      desc: get("home", "howItWorks", "step2_desc", "Trabajamos contigo para personalizar el show perfecto — seleccionando efectos como CO2, confeti, robots LED, muñecos cabezones y música que combine con tu ambiente y audiencia."),
+      title: get("home", "howItWorks", "step2_title", t("how_step2_title"), language),
+      desc: get("home", "howItWorks", "step2_desc", t("how_step2_desc"), language),
       icon: "ri-calendar-event-line",
     },
     {
       num: "3",
-      title: get("home", "howItWorks", "step3_title", "Performance en Vivo"),
-      desc: get("home", "howItWorks", "step3_desc", "Nuestro equipo llega temprano para montar y entrega un show de alta energía, profesionalmente coreografiado con deslumbrantes luces LED, efectos especiales e interacción con la multitud."),
+      title: get("home", "howItWorks", "step3_title", t("how_step3_title"), language),
+      desc: get("home", "howItWorks", "step3_desc", t("how_step3_desc"), language),
       icon: "ri-lightbulb-flash-line",
     },
     {
       num: "4",
-      title: get("home", "howItWorks", "step4_title", "Noche Inolvidable"),
-      desc: get("home", "howItWorks", "step4_desc", "Tus invitados se van asombrados. Nosotros desmontamos sin problemas después del show para que tú sigas celebrando. Los recuerdos y las fotos durarán para siempre."),
+      title: get("home", "howItWorks", "step4_title", t("how_step4_title"), language),
+      desc: get("home", "howItWorks", "step4_desc", t("how_step4_desc"), language),
       icon: "ri-emotion-happy-line",
     },
   ];
@@ -34,10 +36,10 @@ export default function HowItWorks() {
     <section className="py-20 bg-[#111111]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 text-center">
         <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#4facec] border border-[#4facec]/40 rounded-full px-4 py-1 mb-4">
-          {get("home", "howItWorks", "badge", "Cómo Funciona")}
+          {get("home", "howItWorks", "badge", t("how_badge"), language)}
         </span>
         <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-14">
-          {get("home", "howItWorks", "title", "Tu Viaje de Entretenimiento en Cuatro Simples Pasos")}
+          {get("home", "howItWorks", "title", t("how_title"), language)}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step) => (

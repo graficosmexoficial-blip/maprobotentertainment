@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { supabase } from "@/lib/supabase";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
 
@@ -11,6 +12,7 @@ export default function Contact() {
   const [submitError, setSubmitError] = useState("");
   const [charCount, setCharCount] = useState(0);
   const { get } = useSiteContent();
+  const { t, language } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ export default function Contact() {
 
     setSubmitting(false);
     if (error) {
-      setSubmitError("Hubo un error al enviar. Por favor intenta de nuevo.");
+      setSubmitError(t("contact_form_error"));
     } else {
       setSubmitted(true);
     }
@@ -58,7 +60,7 @@ export default function Contact() {
           <div className="relative z-10 py-16 text-center">
             <div className="inline-block bg-[#0d0d0d] border border-[#4facec]/40 px-16 py-6 rounded-lg border-b-4 border-[#4facec]">
               <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-widest uppercase">
-                {get("contact", "hero", "title", "Contáctanos")}
+                {get("contact", "hero", "title", t("contact_hero_title"), language)}
               </h1>
             </div>
           </div>
@@ -76,11 +78,11 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-                  {get("contact", "info", "phone_label", "Llámanos Directo")}
+                  {get("contact", "info", "phone_label", t("contact_phone_label"), language)}
                 </p>
-                <p className="text-white font-bold text-base mt-0.5">{get("contact", "info", "phone", "(914) 527-2616")}</p>
-                <p className="text-white/70 text-xs mt-0.5">{get("contact", "info", "phone_sub", "Siempre Disponible")}</p>
-                <p className="text-white/50 text-xs mt-1">Alt: (914) 426-0484</p>
+                <p className="text-white font-bold text-base mt-0.5">{get("contact", "info", "phone", "(914) 527-2616", language)}</p>
+                <p className="text-white/70 text-xs mt-0.5">{get("contact", "info", "phone_sub", t("contact_phone_sub"), language)}</p>
+                <p className="text-white/50 text-xs mt-1">{t("contact_alt_phone")}</p>
               </div>
             </a>
             <a
@@ -92,9 +94,9 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-                  {get("contact", "info", "email_label", "Escríbenos")}
+                  {get("contact", "info", "email_label", t("contact_email_label"), language)}
                 </p>
-                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "email", "andonairemiguel@gmail.com")}</p>
+                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "email", "andonairemiguel@gmail.com", language)}</p>
               </div>
             </a>
             <a
@@ -108,9 +110,9 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-                  {get("contact", "info", "social_label", "Síguenos")}
+                  {get("contact", "info", "social_label", t("contact_social_label"), language)}
                 </p>
-                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "social_handle", "@m.a.p.robot")}</p>
+                <p className="text-white font-bold text-sm mt-0.5">{get("contact", "info", "social_handle", "@m.a.p.robot", language)}</p>
               </div>
             </a>
             <div className="group flex items-center gap-5 px-8 py-7">
@@ -119,10 +121,10 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-                  {get("contact", "info", "location_label", "Nuestra Ubicación")}
+                  {get("contact", "info", "location_label", t("contact_location_label"), language)}
                 </p>
                 <p className="text-white font-bold text-sm mt-0.5">
-                  {get("contact", "info", "location", "Port Chester, NY, Estados Unidos, 10573")}
+                  {get("contact", "info", "location", "Port Chester, NY, Estados Unidos, 10573", language)}
                 </p>
                 <p className="text-white/70 text-xs">NY · CT · NJ</p>
               </div>
@@ -143,36 +145,35 @@ export default function Contact() {
                     src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893"
                   />
                   <h2 className="text-white text-xl font-extrabold leading-snug">
-                    MAP Robot<br />
-                    <span className="text-[#FACC15]">Entertainment</span>
+                    {t("contact_info_title")}<br />
+                    <span className="text-[#FACC15]">{t("contact_info_subtitle")}</span>
                   </h2>
                   <p className="text-white/60 text-sm mt-3 leading-relaxed max-w-xs">
-                    Entretenimiento premium con robot LED en Port Chester, Nueva York. Sirviendo
-                    el área Tri-State para eventos inolvidables.
+                    {t("contact_info_desc")}
                   </p>
                   <div className="mt-6 w-full bg-white/5 rounded-xl px-5 py-4 text-left">
                     <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mb-2">
-                      Horario de Atención
+                      {t("contact_hours_title")}
                     </p>
                     <div className="flex justify-between text-white text-xs mb-1">
-                      <span>Siempre Abierto</span>
-                      <span className="font-semibold">Disponibilidad 24/7 para Eventos</span>
+                      <span>{t("contact_hours_always")}</span>
+                      <span className="font-semibold">{t("contact_hours_sub")}</span>
                     </div>
                     <div className="flex justify-between text-white/50 text-xs mb-1">
-                      <span>Lunes – Domingo</span>
-                      <span>Con Cita Previa</span>
+                      <span>{t("contact_hours_days")}</span>
+                      <span>{t("contact_hours_apt")}</span>
                     </div>
                     <p className="text-[#FACC15] text-xs mt-3 flex items-center gap-1.5">
                       <i className="ri-lightbulb-flash-line" />
-                      Shows LED y Efectos Especiales
+                      {t("contact_hours_note")}
                     </p>
                   </div>
                   <div className="mt-5 w-full bg-white/5 rounded-xl px-5 py-4 text-left">
                     <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mb-3">
-                      Áreas de Servicio
+                      {t("contact_areas_title")}
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {["Nueva York", "Connecticut", "Nueva Jersey", "Manhattan", "Brooklyn", "Bronx", "Westchester"].map((a) => (
+                      {[t("contact_area_ny"), t("contact_area_ct"), t("contact_area_nj"), t("contact_area_manhattan"), t("contact_area_brooklyn"), t("contact_area_bronx"), t("contact_area_westchester")].map((a) => (
                         <span
                           key={a}
                           className="text-white/70 text-xs bg-white/10 px-2 py-1 rounded-full"
@@ -189,10 +190,10 @@ export default function Contact() {
               <div className="w-full lg:w-[62%]">
                 <div className="bg-white rounded-2xl p-8 md:p-10 h-full">
                   <span className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-                    Envíanos un Mensaje
+                    {t("contact_form_badge")}
                   </span>
                   <h2 className="text-2xl font-extrabold text-[#111111] mt-2 mb-1 leading-snug">
-                    Planeemos Tu Próximo Evento
+                    {t("contact_form_title")}
                   </h2>
                   <div className="w-12 h-1 bg-[#4facec] rounded-full mb-7 mt-3" />
 
@@ -201,8 +202,8 @@ export default function Contact() {
                       <div className="w-16 h-16 flex items-center justify-center bg-[#4facec]/20 rounded-full mx-auto mb-4">
                         <i className="ri-check-line text-[#4facec] text-3xl" />
                       </div>
-                      <h3 className="text-[#111111] font-bold text-xl mb-2">¡Mensaje Enviado!</h3>
-                      <p className="text-gray-500 text-sm">Te llamaremos pronto.</p>
+                      <h3 className="text-[#111111] font-bold text-xl mb-2">{t("contact_form_success_title")}</h3>
+                      <p className="text-gray-500 text-sm">{t("contact_form_success_subtitle")}</p>
                     </div>
                   ) : (
                     <form
@@ -213,23 +214,23 @@ export default function Contact() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label className="block text-gray-700 text-sm font-semibold mb-1.5">
-                            Tu Nombre <span className="text-[#FACC15]">*</span>
+                            {t("contact_form_name_label")} <span className="text-[#FACC15]">*</span>
                           </label>
                           <input
                             name="name"
-                            placeholder="Escribe tu nombre completo"
+                            placeholder={t("contact_form_name_placeholder")}
                             className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4facec] transition-colors"
                             required
                           />
                         </div>
                         <div>
                           <label className="block text-gray-700 text-sm font-semibold mb-1.5">
-                            Teléfono
+                            {t("contact_form_phone_label")}
                           </label>
                           <input
                             name="phone"
                             type="tel"
-                            placeholder="Escribe tu número de teléfono"
+                            placeholder={t("contact_form_phone_placeholder")}
                             className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4facec] transition-colors"
                           />
                         </div>
@@ -237,19 +238,19 @@ export default function Contact() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label className="block text-gray-700 text-sm font-semibold mb-1.5">
-                            Correo <span className="text-[#FACC15]">*</span>
+                            {t("contact_form_email_label")} <span className="text-[#FACC15]">*</span>
                           </label>
                           <input
                             name="email"
                             type="email"
-                            placeholder="Escribe tu correo electrónico"
+                            placeholder={t("contact_form_email_placeholder")}
                             className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4facec] transition-colors"
                             required
                           />
                         </div>
                         <div>
                           <label className="block text-gray-700 text-sm font-semibold mb-1.5">
-                            Servicio Requerido
+                            {t("contact_form_service_label")}
                           </label>
                           <select
                             name="serviceNeeded"
@@ -257,23 +258,23 @@ export default function Contact() {
                             defaultValue=""
                           >
                             <option value="" disabled>
-                              Selecciona un Servicio
+                              {t("contact_form_select_service")}
                             </option>
-                            <option value="Show de Robot LED">Show de Robot con Luces LED</option>
-                            <option value="Hora Loca">Hora Loca</option>
-                            <option value="Bazuca de CO2">Bazuca de CO2</option>
-                            <option value="Confeti">Confeti</option>
-                            <option value="Party Poppers">Party Poppers</option>
-                            <option value="Muñecos Cabezones">Muñecos Cabezones de Artistas</option>
-                            <option value="DJ Privado">DJ Privado</option>
-                            <option value="Evento Privado">Evento Privado</option>
-                            <option value="Club">Club</option>
+                            <option value="Show de Robot LED">{t("hero_form_option_robot")}</option>
+                            <option value="Hora Loca">{t("hero_form_option_hora_loca")}</option>
+                            <option value="Bazuca de CO2">{t("hero_form_option_co2")}</option>
+                            <option value="Confeti">{t("hero_form_option_confeti")}</option>
+                            <option value="Party Poppers">{t("hero_form_option_poppers")}</option>
+                            <option value="Muñecos Cabezones">{t("hero_form_option_cabezones")}</option>
+                            <option value="DJ Privado">{t("hero_form_option_dj")}</option>
+                            <option value="Evento Privado">{t("hero_form_option_privado")}</option>
+                            <option value="Club">{t("hero_form_option_club")}</option>
                           </select>
                         </div>
                       </div>
                       <div>
                         <label className="block text-gray-700 text-sm font-semibold mb-1.5">
-                          Detalles del Evento y Mensaje{" "}
+                          {t("contact_form_message_label")}{" "}
                           <span className="text-[#FACC15]">*</span>
                           <span className="text-gray-400 font-normal ml-1 text-xs">
                             ({charCount}/500)
@@ -283,7 +284,7 @@ export default function Contact() {
                           name="message"
                           rows={5}
                           maxLength={500}
-                          placeholder="Describe tu evento (tipo, fecha, lugar, número de invitados), el entretenimiento que deseas, y cualquier detalle específico..."
+                          placeholder={t("contact_form_message_placeholder")}
                           className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-[#4facec] transition-colors resize-none"
                           onChange={(e) => setCharCount(e.target.value.length)}
                           required
@@ -298,7 +299,7 @@ export default function Contact() {
                         className="whitespace-nowrap w-full bg-[#4facec] hover:bg-[#3d9ce6] disabled:opacity-60 text-white font-bold py-4 rounded-lg text-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
                       >
                         <i className="ri-send-plane-line" />
-                        {submitting ? "Enviando..." : "Enviar Mensaje"}
+                        {submitting ? t("contact_form_sending") : t("contact_form_submit")}
                       </button>
                     </form>
                   )}

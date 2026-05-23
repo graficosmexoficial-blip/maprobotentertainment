@@ -59,8 +59,18 @@ export function useSiteContent() {
     };
   }, [load]);
 
-  const get = (page: string, section: string, field: string, fallback: string): string => {
+  const get = (page: string, section: string, field: string, fallback: string, lang?: string): string => {
     if (!content) return fallback;
+    if (lang) {
+      const langKey = `${page}.${section}.${field}.${lang}`;
+      const langVal = content[langKey];
+      if (langVal !== undefined && langVal !== '') return langVal;
+      // For Spanish (default), also try base key (existing DB content)
+      if (lang === 'es') {
+        return content[`${page}.${section}.${field}`] ?? fallback;
+      }
+      return fallback;
+    }
     return content[`${page}.${section}.${field}`] ?? fallback;
   };
 

@@ -2,34 +2,51 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
-
-const faqs = [
-  {
-    q: "¿En qué tipos de eventos se presentan?",
-    a: "Nos presentamos en bodas, quinceañeras, clubs, eventos corporativos, fiestas privadas, cumpleaños, graduaciones, fiestas de fin de año y cualquier ocasión especial que merezca entretenimiento inolvidable. Nuestros shows de robot LED y efectos especiales funcionan en interiores y exteriores.",
-  },
-  { q: "¿Con cuánta anticipación debo reservar?", a: "Recomendamos reservar al menos 2-4 semanas de anticipación para eventos estándar, y 1-3 meses para bodas o eventos corporativos grandes. Sin embargo, también acomodamos reservas de último minuto cuando es posible — solo llámanos al (914) 527-2616 para verificar disponibilidad." },
-  { q: "¿Viajan fuera de Port Chester?", a: "¡Absolutamente! Servimos todo el área Tri-State incluyendo Nueva York, Connecticut y Nueva Jersey. Pueden aplicar cargos de viaje dependiendo de la distancia, los cuales incluimos de forma transparente en tu cotización." },
-  { q: "¿Cómo obtengo una cotización para mi evento?", a: "Puedes obtener una cotización gratuita llenando el formulario de contacto en nuestro sitio, llamándonos al (914) 527-2616, o enviando un DM en TikTok @m.a.p.robot. Te responderemos rápidamente con un paquete personalizado para tu tipo de evento y tamaño." },
-  { q: "¿Qué incluye un paquete de show típico?", a: "Nuestros paquetes estándar incluyen performers robots LED, bazucas de CO2, efectos de confeti y party poppers. También ofrecemos extras como muñecos cabezones, hora loca extendida, y montajes de luces LED personalizadas. Cada paquete es adaptado a tu evento." },
-  { q: "¿Qué hace diferente a MAP Robot Entertainment?", a: "Combinamos tecnología LED de punta con performance de alta energía para crear momentos que tus invitados nunca olvidarán. Nuestro equipo es profesional, puntual y apasionado por hacer cada evento extraordinario. Ningún evento es demasiado grande o pequeño." },
-];
-
-const values = [
-  { icon: "ri-lightbulb-flash-line", label: "Tecnología LED de Vanguardia" },
-  { icon: "ri-fire-line", label: "Performances de Alta Energía" },
-  { icon: "ri-shield-check-line", label: "Servicio Profesional y Confiable" },
-  { icon: "ri-user-heart-line", label: "Experiencia Centrada en el Cliente" },
-  { icon: "ri-map-pin-line", label: "Cobertura Área Tri-State" },
-  { icon: "ri-time-line", label: "Siempre Puntuales" },
-];
 
 export default function About() {
   const [openFaq, setOpenFaq] = useState(0);
   const { get } = useSiteContent();
   const { getMedia } = useSiteMedia("ABOUT");
+  const { t, language } = useLanguage();
+
+  const faqs = [
+    {
+      q: t("about_faq1_q"),
+      a: t("about_faq1_a"),
+    },
+    {
+      q: t("about_faq2_q"),
+      a: t("about_faq2_a"),
+    },
+    {
+      q: t("about_faq3_q"),
+      a: t("about_faq3_a"),
+    },
+    {
+      q: t("about_faq4_q"),
+      a: t("about_faq4_a"),
+    },
+    {
+      q: t("about_faq5_q"),
+      a: t("about_faq5_a"),
+    },
+    {
+      q: t("about_faq6_q"),
+      a: t("about_faq6_a"),
+    },
+  ];
+
+  const values = [
+    { icon: "ri-lightbulb-flash-line", label: t("about_value1") },
+    { icon: "ri-fire-line", label: t("about_value2") },
+    { icon: "ri-shield-check-line", label: t("about_value3") },
+    { icon: "ri-user-heart-line", label: t("about_value4") },
+    { icon: "ri-map-pin-line", label: t("about_value5") },
+    { icon: "ri-time-line", label: t("about_value6") },
+  ];
 
   const faqImage = getMedia(
     "about-faq-image",
@@ -62,7 +79,7 @@ export default function About() {
           <div className="relative max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
             <div className="bg-[#0d0d0d] border border-[#4facec]/40 rounded-2xl px-16 py-7 inline-block text-center border-b-4 border-[#4facec]">
               <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-widest uppercase">
-                {get("about", "hero", "title", "Sobre Nosotros")}
+                {get("about", "hero", "title", t("about_hero_title"), language)}
               </h1>
             </div>
           </div>
@@ -74,24 +91,24 @@ export default function About() {
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1">
                 <span className="text-[#4facec] text-xs font-bold uppercase tracking-widest">
-                  {get("about", "story", "badge", "NUESTRA HISTORIA")}
+                  {get("about", "story", "badge", t("about_story_badge"), language)}
                 </span>
                 <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 leading-tight">
-                  {get("about", "story", "title", "El Mejor Entretenimiento con Robot LED de Nueva York")}
+                  {get("about", "story", "title", t("about_story_title"), language)}
                 </h2>
                 <p className="text-gray-400 mt-5 text-sm leading-relaxed">
-                  {get("about", "story", "paragraph1", "MAP Robot Entertainment nació de una pasión por llevar energía extraordinaria a cada celebración. Lo que comenzó como un pequeño show de robot LED en clubs locales ha crecido hasta convertirse en una de las empresas de entretenimiento más solicitadas del área Tri-State — presentándose en bodas, galas corporativas, quinceañeras y eventos de nightclub en Nueva York, Connecticut y Nueva Jersey.")}
+                  {get("about", "story", "paragraph1", t("about_story_p1"), language)}
                 </p>
                 <p className="text-gray-400 mt-4 text-sm leading-relaxed">
-                  {get("about", "story", "paragraph2", "Con base en Port Chester, Nueva York, nuestro equipo combina tecnología LED de punta con arte de performance de alta energía. Desde nuestros shows de robot LED hasta bazucas de CO2, explosiones de confeti y divertidos muñecos cabezones, creamos momentos de los que los invitados hablan mucho después de que la fiesta termina.")}
+                  {get("about", "story", "paragraph2", t("about_story_p2"), language)}
                 </p>
                 <div className="mt-8 flex items-center gap-6">
                   <div>
                     <p className="text-xl italic text-white font-semibold">
-                      MAP Robot Entertainment
+                      {t("about_story_signature")}
                     </p>
                     <p className="text-xs text-gray-500 mt-1 font-semibold uppercase tracking-widest">
-                      Especialistas en Entretenimiento LED
+                      {t("about_story_role")}
                     </p>
                   </div>
                 </div>
@@ -102,7 +119,7 @@ export default function About() {
                     </div>
                     <p className="text-3xl font-extrabold text-white leading-none">5+</p>
                     <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mt-1">
-                      Años de Experiencia
+                      {t("about_story_stat1")}
                     </p>
                   </div>
                   <div className="flex flex-col items-center justify-center gap-2 bg-[#111111] rounded-2xl px-4 py-6 text-center cursor-default hover:bg-[#4facec]/20 transition-colors">
@@ -111,7 +128,7 @@ export default function About() {
                     </div>
                     <p className="text-3xl font-extrabold text-white leading-none">500+</p>
                     <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mt-1">
-                      Eventos Realizados
+                      {t("about_story_stat2")}
                     </p>
                   </div>
                   <div className="flex flex-col items-center justify-center gap-2 bg-[#111111] rounded-2xl px-4 py-6 text-center cursor-default hover:bg-[#4facec]/20 transition-colors">
@@ -120,7 +137,7 @@ export default function About() {
                     </div>
                     <p className="text-3xl font-extrabold text-white leading-none">100%</p>
                     <p className="text-[#4facec] text-xs font-semibold uppercase tracking-widest mt-1">
-                      Satisfacción Garantizada
+                      {t("about_story_stat3")}
                     </p>
                   </div>
                 </div>
@@ -136,9 +153,9 @@ export default function About() {
                     />
                   </div>
                   <div className="absolute -bottom-4 -left-4 bg-[#4facec] text-white rounded-xl px-5 py-3 text-center">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-white/80">Est.</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-white/80">{t("about_est")}</p>
                     <p className="text-2xl font-extrabold">2020</p>
-                    <p className="text-xs text-white/80">Port Chester, NY</p>
+                    <p className="text-xs text-white/80">{t("about_location")}</p>
                   </div>
                 </div>
               </div>
@@ -158,23 +175,23 @@ export default function About() {
           </div>
           <div className="relative max-w-4xl mx-auto px-4 md:px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
-              {get("about", "ctaBanner", "title", "Reserva Tu Show de Robot LED Hoy")}
+              {get("about", "ctaBanner", "title", t("about_cta_title"), language)}
             </h2>
             <p className="text-gray-300 mt-4 text-base max-w-xl mx-auto">
-              {get("about", "ctaBanner", "subtitle", "Obtén planificación de entretenimiento personalizada sin compromiso. Hablemos de tu próximo evento y hagámoslo inolvidable.")}
+              {get("about", "ctaBanner", "subtitle", t("about_cta_subtitle"), language)}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
               <Link
                 className="inline-flex items-center gap-2 whitespace-nowrap bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-10 py-4 rounded-full transition-all cursor-pointer hover:scale-105"
                 to="/contact"
               >
-                {get("about", "ctaBanner", "primary_button", "Habla Con Nuestro Equipo")} <i className="ri-arrow-right-line" />
+                {get("about", "ctaBanner", "primary_button", t("about_cta_button"), language)} <i className="ri-arrow-right-line" />
               </Link>
               <a
                 href="https://wa.me/19145272616"
                 className="inline-flex items-center gap-2 whitespace-nowrap bg-[#FACC15] hover:bg-[#E5B314] text-[#111111] font-bold px-10 py-4 rounded-full transition-all cursor-pointer hover:scale-105"
               >
-                <i className="ri-phone-line" />{get("about", "ctaBanner", "phone_button", "(914) 527-2616")}
+                <i className="ri-phone-line" />{get("about", "ctaBanner", "phone_button", "(914) 527-2616", language)}
               </a>
             </div>
           </div>
@@ -185,13 +202,13 @@ export default function About() {
           <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col lg:flex-row gap-12 items-stretch">
             <div className="flex-1">
               <span className="text-[#4facec] text-xs font-bold uppercase tracking-widest">
-                {get("about", "faqs", "badge", "PREGUNTAS FRECUENTES")}
+                {get("about", "faqs", "badge", t("about_faqs_badge"), language)}
               </span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white mt-3 leading-snug">
-                {get("about", "faqs", "title", "Preguntas Comunes Sobre MAP Robot Entertainment")}
+                {get("about", "faqs", "title", t("about_faqs_title"), language)}
               </h2>
               <p className="text-gray-400 text-sm mt-3 leading-relaxed">
-                {get("about", "faqs", "subtitle", "Sabemos que planificar el entretenimiento para tu evento genera preguntas. Aquí están algunas de las más comunes que nuestros clientes hacen antes de empezar.")}
+                {get("about", "faqs", "subtitle", t("about_faqs_subtitle"), language)}
               </p>
               <div className="mt-8 space-y-3">
                 {faqs.map((faq, i) => (
@@ -247,25 +264,25 @@ export default function About() {
                 <img
                   alt="MAP Robot Entertainment performance con luces LED y efectos especiales"
                   className="w-full h-full object-cover object-center"
-                  src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/bf3d74d3-2393-4b3e-956e-f99bdea30a18_484407683_622784440555400_1975758362729952323_n.jpg?v=ef56c01f6b547b47c41dd411b0bcb258"
+                  src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/021cd063-63d8-49b6-8e47-8f6aec5d2883_WhatsApp-Image-2026-05-19-at-2.19.13-PM-1.jpeg?v=52b90b969a73e43300cb9e06af8e63b9"
                 />
                 <div className="absolute bottom-5 left-5 bg-[#111111]/90 text-white rounded-xl px-5 py-3 backdrop-blur-sm">
                   <p className="text-[#4facec] text-xs font-bold uppercase tracking-widest">
-                    Evento Real
+                    {t("about_event_real")}
                   </p>
-                  <p className="text-sm font-bold mt-0.5">Port Chester, Nueva York</p>
+                  <p className="text-sm font-bold mt-0.5">{t("about_event_location")}</p>
                 </div>
               </div>
             </div>
             <div className="flex-1">
               <span className="text-[#4facec] text-xs font-bold uppercase tracking-widest">
-                {get("about", "values", "badge", "NUESTROS VALORES")}
+                {get("about", "values", "badge", t("about_values_badge"), language)}
               </span>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white mt-3 leading-snug">
-                {get("about", "values", "title", "Lo Que Hace Diferente a MAP Robot Entertainment")}
+                {get("about", "values", "title", t("about_values_title"), language)}
               </h2>
               <p className="text-gray-400 text-sm mt-4 leading-relaxed">
-                {get("about", "values", "subtitle", "Cualquier empresa de entretenimiento puede prometer un buen show, pero lo que realmente nos define es cómo lo entregamos. En MAP Robot Entertainment, nuestra fundación se construye sobre un conjunto de valores centrales que guían cada performance, cada interacción y cada evento que iluminamos.")}
+                {get("about", "values", "subtitle", t("about_values_subtitle"), language)}
               </p>
               <ul className="mt-7 space-y-2">
                 {values.map((v) => (
@@ -287,13 +304,13 @@ export default function About() {
                   className="inline-flex items-center gap-2 whitespace-nowrap bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-7 py-3 rounded-full transition-all cursor-pointer hover:scale-105"
                   to="/contact"
                 >
-                  Reserva Tu Show Hoy <i className="ri-arrow-right-line" />
+                  {t("about_values_cta1")} <i className="ri-arrow-right-line" />
                 </Link>
                 <Link
                   className="inline-flex items-center gap-2 whitespace-nowrap bg-[#FACC15] hover:bg-[#E5B314] text-[#111111] font-bold px-7 py-3 rounded-full transition-all cursor-pointer hover:scale-105"
                   to="/services"
                 >
-                  Ver Nuestro Trabajo <i className="ri-eye-line" />
+                  {t("about_values_cta2")} <i className="ri-eye-line" />
                 </Link>
               </div>
             </div>

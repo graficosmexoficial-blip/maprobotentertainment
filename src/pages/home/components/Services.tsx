@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Services() {
   const { get } = useSiteContent();
   const { getMedia } = useSiteMedia("INICIO");
+  const { t, language } = useLanguage();
 
   const servicesFeatured = getMedia(
     "services-featured",
@@ -13,8 +15,8 @@ export default function Services() {
 
   const services = [
     {
-      title: get("home", "services", "card1_title", "Show de Robot LED"),
-      desc: get("home", "services", "card1_desc", "Performers robots de alta energía cubiertos de luces LED deslumbrantes que bailan, interactúan y electrizan a la multitud. Perfecto para clubs, bodas y eventos corporativos."),
+      title: get("home", "services", "card1_title", t("service_robot_title"), language),
+      desc: get("home", "services", "card1_desc", t("service_robot_desc"), language),
       img: getMedia(
         "services-card-1",
         "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/c65a3c04-2665-4289-8f3c-73f44d3fe145_magnific_creame-una-foto-en-donde-_3004827050-1.jpg?v=e4879d4e6c67d0483305c74924748f13"
@@ -22,8 +24,8 @@ export default function Services() {
       icon: "ri-lightbulb-flash-line",
     },
     {
-      title: get("home", "services", "card2_title", "Hora Loca"),
-      desc: get("home", "services", "card2_desc", "¡La hora de fiesta definitiva! Performers de alta energía, locos accesorios y acción sin parar que convierten la pista en un carnaval de diversión inolvidable."),
+      title: get("home", "services", "card2_title", t("service_hora_title"), language),
+      desc: get("home", "services", "card2_desc", t("service_hora_desc"), language),
       img: getMedia(
         "services-card-2",
         "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/70503375736b6ace7fe0112e684a5146.png"
@@ -31,8 +33,8 @@ export default function Services() {
       icon: "ri-fire-line",
     },
     {
-      title: get("home", "services", "card3_title", "Bazuca de CO2 y Confeti"),
-      desc: get("home", "services", "card3_desc", "Explosiones dramáticas de CO2 y lluvias de confeti colorido sobre la multitud. Crea momentos impresionantes que asombran a tus invitados y iluminan las redes sociales."),
+      title: get("home", "services", "card3_title", t("service_co2_title"), language),
+      desc: get("home", "services", "card3_desc", t("service_co2_desc"), language),
       img: getMedia(
         "services-card-3",
         "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/dc7c6321-cd9a-40b2-8cfe-d5d94b9d4c2a_magnific_me-encanta-esta-foto-pero_xgeEqCujfW.png?v=a3906bdabfaf8f8758ab756895856eaa"
@@ -47,20 +49,20 @@ export default function Services() {
         <div className="flex flex-col lg:flex-row gap-10 items-center mb-14">
           <div className="flex-1">
             <span className="text-[#4facec] text-xs font-semibold uppercase tracking-widest">
-              {get("home", "services", "badge", "Nuestros Servicios")}
+              {get("home", "services", "badge", t("services_badge"), language)}
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 leading-tight max-w-md">
-              {get("home", "services", "title", "Servicios Premium de Entretenimiento Para Todo Evento")}
+              {get("home", "services", "title", t("services_title"), language)}
             </h2>
             <p className="text-gray-400 mt-4 text-sm leading-relaxed max-w-sm">
-              {get("home", "services", "subtitle", "Desde shows de robot LED hasta bazucas de CO2 y lluvias de confeti, ofrecemos entretenimiento de impacto que hace de tu evento el tema de conversación de la ciudad.")}
+              {get("home", "services", "subtitle", t("services_subtitle"), language)}
             </p>
             <div className="inline-flex items-center gap-3 bg-[#1a1a1a] border border-[#4facec]/30 text-white px-6 py-3.5 rounded-xl mt-7">
               <i className="ri-emotion-happy-line text-[#FACC15] text-xl"></i>
               <div>
-                <span className="text-2xl font-extrabold text-[#FACC15]">{get("home", "services", "stat_value", "500+")}</span>
-                <span className="text-white font-semibold text-sm ml-2">{get("home", "services", "stat_label", "Clientes Felices")}</span>
-                <p className="text-white/50 text-xs mt-0.5">{get("home", "services", "stat_desc", "Eventos transformados en experiencias inolvidables")}</p>
+                <span className="text-2xl font-extrabold text-[#FACC15]">{get("home", "services", "stat_value", t("services_stat_value"), language)}</span>
+                <span className="text-white font-semibold text-sm ml-2">{get("home", "services", "stat_label", t("services_stat_label"), language)}</span>
+                <p className="text-white/50 text-xs mt-0.5">{get("home", "services", "stat_desc", t("services_stat_desc"), language)}</p>
               </div>
             </div>
           </div>
@@ -79,9 +81,9 @@ export default function Services() {
                   <i className="ri-shield-check-line text-[#4facec] text-base"></i>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-xs leading-tight">Servicio Tri-State</h4>
+                  <h4 className="text-white font-bold text-xs leading-tight">{t("services_location")}</h4>
                   <p className="text-gray-400 text-[11px] mt-0.5 leading-relaxed">
-                    Cubrimos Nueva York, Connecticut y Nueva Jersey para todo tipo de eventos.
+                    {t("services_cta_subtitle")}
                   </p>
                 </div>
               </div>
@@ -90,9 +92,9 @@ export default function Services() {
                   <i className="ri-file-list-3-line text-[#4facec] text-base"></i>
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-xs leading-tight">Reserva Tu Show</h4>
+                  <h4 className="text-white font-bold text-xs leading-tight">{t("cta_primary_button")}</h4>
                   <p className="text-gray-400 text-[11px] mt-0.5 leading-relaxed">
-                    Obtén una cotización detallada sin compromiso para tu evento.
+                    {t("services_cta_subtitle")}
                   </p>
                 </div>
               </div>
@@ -101,9 +103,9 @@ export default function Services() {
         </div>
 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <h3 className="text-xl font-bold text-white">{get("home", "services", "bottom_title", "Entretenimiento Diseñado para Impresionar")}</h3>
+          <h3 className="text-xl font-bold text-white">{get("home", "services", "bottom_title", t("services_bottom_title"), language)}</h3>
           <p className="text-gray-400 text-sm max-w-md">
-            {get("home", "services", "bottom_desc", "Desde performers robots LED hasta bazucas de CO2 y muñecos cabezones, nuestros servicios cubren toda necesidad de entretenimiento con energía y visuales de alto impacto.")}
+            {get("home", "services", "bottom_desc", t("services_bottom_desc"), language)}
           </p>
         </div>
 
@@ -136,7 +138,7 @@ export default function Services() {
             to="/services"
             className="whitespace-nowrap inline-flex items-center gap-2 bg-[#4facec] hover:bg-[#3d9ce6] text-white font-semibold px-10 py-4 rounded-full text-sm transition-colors cursor-pointer"
           >
-            Ver Todos Los Servicios <i className="ri-arrow-right-line"></i>
+            {t("services_view_all")} <i className="ri-arrow-right-line"></i>
           </Link>
         </div>
       </div>

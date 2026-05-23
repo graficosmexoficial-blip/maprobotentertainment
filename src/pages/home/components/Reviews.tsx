@@ -1,86 +1,88 @@
 import { useState } from "react";
 import { useSiteContent } from "@/hooks/useSiteContent";
-
-const allReviews = [
-  {
-    text: "¡MAP Robot hizo de nuestra recepción de boda algo absolutamente inolvidable! Los robots LED salieron durante la hora loca y la multitud se volvió loca. Todo el mundo sigue hablando de ello. ¡Altamente recomendado para cualquier evento!",
-    name: "Maria G.",
-    initials: "MG",
-    date: "12 Mayo, 2024",
-  },
-  {
-    text: "Los contratamos para un evento de club en NYC y los cañones de CO2 más la explosión de confeti fueron una locura. La energía se fue por las nubes. Montaje profesional, a tiempo, y los muñecos cabezones fueron hilarantes. 10/10.",
-    name: "Jose R.",
-    initials: "JR",
-    date: "3 Agosto, 2024",
-  },
-  {
-    text: "La quinceañera de mi hija fue legendaria gracias a MAP Robot. El show de robot LED fue lo más destacado de la noche. A los chicos les encantaron los muñecos cabezones y los party poppers. ¡Cada centavo valió la pena!",
-    name: "Jennifer M.",
-    initials: "JM",
-    date: "17 Nov, 2024",
-  },
-  {
-    text: "Rápidos, amables y absolutamente eléctricos. Los contratamos para una fiesta corporativa de fin de año y el show de robot con luces LED dejó a nuestros empleados asombrados. Profesionales de principio a fin.",
-    name: "Carlos T.",
-    initials: "CT",
-    date: "8 Feb, 2025",
-  },
-  {
-    text: "La mejor empresa de entretenimiento del área Tri-State sin duda. Precios honestos, gran comunicación, y el show final superó todas las expectativas. Los contrataremos de nuevo para nuestro próximo evento sin dudarlo.",
-    name: "Angela W.",
-    initials: "AW",
-    date: "15 Jun, 2024",
-  },
-  {
-    text: "Reservamos el paquete de bazuca de CO2 y confeti para el aniversario de nuestro nightclub. La reacción de la multitud fue increíble — todos con el celular en mano. MAP Robot sabe cómo crear momentos que se hacen virales.",
-    name: "Robert K.",
-    initials: "RK",
-    date: "22 Oct, 2024",
-  },
-  {
-    text: "Servicio profesional de principio a fin. Obtuve mi cotización el mismo día, nos ayudaron a planificar toda la línea de tiempo, y el show en nuestra fiesta privada fue impecable. ¡Gracias MAP Robot Entertainment!",
-    name: "Lisa P.",
-    initials: "LP",
-    date: "30 Mar, 2024",
-  },
-  {
-    text: "He contratado a MAP Robot para mis eventos de club por más de 2 años. Ya sea una fiesta privada pequeña o una noche masiva de club, siempre entregan entretenimiento de primer nivel. Los robots LED son insuperables.",
-    name: "David S.",
-    initials: "DS",
-    date: "5 Ene, 2025",
-  },
-  {
-    text: "Los muñecos cabezones en nuestra fiesta de cumpleaños hicieron que todos se rieran y bailaran. Combinado con la explosión de confeti a medianoche — el mejor cumpleaños de todos. Precio justo y montaje rápido. ¡Recomendadísimos!",
-    name: "Michelle B.",
-    initials: "MB",
-    date: "14 Sep, 2024",
-  },
-  {
-    text: "Después de un aburrido evento corporativo el año pasado, decidimos ir a lo grande. El show LED + efectos de CO2 de MAP Robot convirtieron nuestra fiesta de empresa en una experiencia nivel concierto. El CEO los quiere de vuelta el año que viene.",
-    name: "James L.",
-    initials: "JL",
-    date: "19 Jul, 2024",
-  },
-  {
-    text: "Paquete completo de boda con show de robot, hora loca y party poppers. Lo hicieron realidad con luces hermosas y energía increíble. Verdaderos performers que se preocupan por hacer tu noche especial.",
-    name: "Tom H.",
-    initials: "TH",
-    date: "2 Abr, 2024",
-  },
-  {
-    text: "Respuesta rápida para una reserva de último minuto en el club. El equipo llegó, montó rápido y entregó un show que parecía planeado hace meses. Colorido, ruidoso y absolutamente perfecto.",
-    name: "Sandra N.",
-    initials: "SN",
-    date: "11 Dic, 2024",
-  },
-];
-
-const PER_PAGE = 3;
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Reviews() {
   const { get } = useSiteContent();
+  const { t, language } = useLanguage();
   const [page, setPage] = useState(1);
+
+  const allReviews = [
+    {
+      text: t("reviews_review1"),
+      name: t("reviews_name1"),
+      initials: "MG",
+      date: t("reviews_date1"),
+    },
+    {
+      text: t("reviews_review2"),
+      name: t("reviews_name2"),
+      initials: "JR",
+      date: t("reviews_date2"),
+    },
+    {
+      text: t("reviews_review3"),
+      name: t("reviews_name3"),
+      initials: "JM",
+      date: t("reviews_date3"),
+    },
+    {
+      text: t("reviews_review4"),
+      name: t("reviews_name4"),
+      initials: "CT",
+      date: t("reviews_date4"),
+    },
+    {
+      text: t("reviews_review5"),
+      name: t("reviews_name5"),
+      initials: "AW",
+      date: t("reviews_date5"),
+    },
+    {
+      text: t("reviews_review6"),
+      name: t("reviews_name6"),
+      initials: "RK",
+      date: t("reviews_date6"),
+    },
+    {
+      text: t("reviews_review7"),
+      name: t("reviews_name7"),
+      initials: "LP",
+      date: t("reviews_date7"),
+    },
+    {
+      text: t("reviews_review8"),
+      name: t("reviews_name8"),
+      initials: "DS",
+      date: t("reviews_date8"),
+    },
+    {
+      text: t("reviews_review9"),
+      name: t("reviews_name9"),
+      initials: "MB",
+      date: t("reviews_date9"),
+    },
+    {
+      text: t("reviews_review10"),
+      name: t("reviews_name10"),
+      initials: "JL",
+      date: t("reviews_date10"),
+    },
+    {
+      text: t("reviews_review11"),
+      name: t("reviews_name11"),
+      initials: "TH",
+      date: t("reviews_date11"),
+    },
+    {
+      text: t("reviews_review12"),
+      name: t("reviews_name12"),
+      initials: "SN",
+      date: t("reviews_date12"),
+    },
+  ];
+
+  const PER_PAGE = 3;
   const totalPages = Math.ceil(allReviews.length / PER_PAGE);
   const current = allReviews.slice((page - 1) * PER_PAGE, page * PER_PAGE);
 
@@ -95,10 +97,10 @@ export default function Reviews() {
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
-            <span className="text-white/70 text-sm font-medium">Reseñas de Google</span>
+            <span className="text-white/70 text-sm font-medium">{t("reviews_badge")}</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4 flex items-center justify-center gap-3 flex-wrap">
-            <span>{get("home", "reviews", "title", "Lo Que Dicen Nuestros Clientes")}</span>
+            <span>{get("home", "reviews", "title", t("reviews_title"), language)}</span>
             <svg className="w-10 h-10 md:w-12 md:h-12 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -107,7 +109,7 @@ export default function Reviews() {
             </svg>
           </h2>
           <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto mb-6">
-            {get("home", "reviews", "subtitle", "Reseñas reales de clientes reales en Nueva York, Connecticut y Nueva Jersey. Estamos orgullosos de nuestra reputación.")}
+            {get("home", "reviews", "subtitle", t("reviews_subtitle"), language)}
           </p>
           <div className="inline-flex items-center gap-4 bg-[#111111] border border-white/10 rounded-2xl px-6 py-4">
             <div className="flex items-center gap-1">
@@ -118,13 +120,13 @@ export default function Reviews() {
               <i className="text-xl ri-star-half-fill text-[#FACC15]"></i>
             </div>
             <div className="text-left">
-              <p className="text-white font-extrabold text-2xl">{get("home", "reviews", "rating_value", "4.9")}</p>
-              <p className="text-gray-500 text-xs">de 5 estrellas</p>
+              <p className="text-white font-extrabold text-2xl">{get("home", "reviews", "rating_value", t("reviews_rating_value"), language)}</p>
+              <p className="text-gray-500 text-xs">{t("reviews_of_stars")}</p>
             </div>
             <div className="w-px h-10 bg-white/10"></div>
             <div className="text-left">
-              <p className="text-white font-bold text-lg">{get("home", "reviews", "reviews_count", "40+")}</p>
-              <p className="text-gray-500 text-xs">reseñas verificadas</p>
+              <p className="text-white font-bold text-lg">{get("home", "reviews", "reviews_count", "40+", language)}</p>
+              <p className="text-gray-500 text-xs">{t("reviews_verified")}</p>
             </div>
           </div>
         </div>
@@ -162,7 +164,7 @@ export default function Reviews() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-white text-sm font-semibold">{r.name}</p>
-                  <p className="text-gray-500 text-xs">Cliente Verificado · {r.date}</p>
+                  <p className="text-gray-500 text-xs">{t("reviews_customer")} · {r.date}</p>
                 </div>
               </div>
             </div>
@@ -176,10 +178,10 @@ export default function Reviews() {
             rel="nofollow noopener noreferrer"
             className="inline-flex items-center gap-2.5 whitespace-nowrap bg-[#4facec] hover:bg-[#3d9ce6] text-white font-bold px-8 py-4 rounded-full text-base transition-all duration-200 cursor-pointer"
           >
-            Déjanos una Reseña de 5 Estrellas en Facebook
+            {t("reviews_leave_review")}
           </a>
           <p className="text-gray-500 text-xs mt-3">
-            Tu opinión nos ayuda a crecer y a servirte mejor.
+            {t("reviews_opinion")}
           </p>
         </div>
 

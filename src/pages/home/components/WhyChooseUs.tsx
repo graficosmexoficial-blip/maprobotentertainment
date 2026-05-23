@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function WhyChooseUs() {
   const { get } = useSiteContent();
   const { getMedia } = useSiteMedia("INICIO");
+  const { t, language } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -34,10 +36,10 @@ export default function WhyChooseUs() {
   };
 
   const bars = [
-    { label: "Tasa de Satisfacción del Cliente", value: 99 },
-    { label: "Tasa de Éxito en Eventos", value: 100 },
-    { label: "Puntualidad", value: 98 },
-    { label: "Tasa de Recomendación", value: 96 },
+    { label: t("why_bar1"), value: 99 },
+    { label: t("why_bar2"), value: 100 },
+    { label: t("why_bar3"), value: 98 },
+    { label: t("why_bar4"), value: 96 },
   ];
 
   const videoUrl = getMedia(
@@ -62,26 +64,26 @@ export default function WhyChooseUs() {
             <div className="absolute inset-0 bg-black/30"></div>
             <button
               className="relative z-10 w-20 h-20 flex items-center justify-center bg-[#4facec] hover:bg-[#3d9ce6] rounded-full transition-all duration-200 cursor-pointer"
-              aria-label={isPlaying ? "Pausar video" : "Reproducir video"}
+              aria-label={isPlaying ? t("why_pause") : t("why_play")}
             >
               <i className={`${isPlaying ? 'ri-pause-fill' : 'ri-play-fill'} text-white text-4xl ml-1`}></i>
             </button>
           </div>
           <div className="absolute bottom-4 left-0 right-0 flex justify-center z-10">
             <span className="bg-black/60 text-white text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide">
-              Performance Real — MAP Robot Entertainment
+              {t("why_video_label")}
             </span>
           </div>
         </div>
         <div className="w-full lg:w-1/2 bg-[#1a1a1a] border border-white/10 rounded-2xl flex flex-col justify-center px-8 md:px-10 py-10 m-4 lg:m-0">
           <span className="inline-block text-xs font-bold uppercase tracking-widest text-[#4facec] border border-[#4facec]/40 rounded-full px-4 py-1 mb-5 w-fit">
-            {get("home", "whyChooseUs", "badge", "¿Por Qué Elegirnos?")}
+            {get("home", "whyChooseUs", "badge", t("why_badge"), language)}
           </span>
           <h2 className="text-2xl md:text-3xl font-extrabold text-white leading-snug mb-4">
-            {get("home", "whyChooseUs", "title", "Excelencia en Entretenimiento Respaldada Por Performance Real")}
+            {get("home", "whyChooseUs", "title", t("why_title"), language)}
           </h2>
           <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-md">
-            {get("home", "whyChooseUs", "subtitle", "Nuestros resultados hablan por sí solos. En MAP Robot Entertainment nos exigimos los más altos estándares en cada evento — desde los efectos LED que traemos hasta la reacción final de la multitud.")}
+            {get("home", "whyChooseUs", "subtitle", t("why_subtitle"), language)}
           </p>
           <div className="space-y-5">
             {bars.map((bar) => (

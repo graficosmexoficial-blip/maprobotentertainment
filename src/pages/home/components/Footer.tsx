@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t, language, setLanguage } = useLanguage();
   const { getMedia } = useSiteMedia("INICIO");
+
+  const currentLang = language.startsWith("en") ? "en" : "es";
 
   const logoUrl = getMedia(
     "footer-logo",
@@ -20,9 +24,7 @@ export default function Footer() {
               src={logoUrl}
             />
             <p className="text-gray-400 text-sm leading-relaxed">
-              Entretenimiento premium con robot LED en Port Chester, Nueva York.
-              Servimos bodas, clubs, eventos privados y fiestas corporativas
-              en todo el área Tri-State.
+              {t("footer_tagline")}
             </p>
             <div className="flex gap-3 mt-5">
               <a
@@ -71,27 +73,27 @@ export default function Footer() {
 
           <div>
             <h4 className="text-[#4facec] font-semibold uppercase text-xs tracking-widest mb-5">
-              Navegación
+              {t("footer_navigation")}
             </h4>
             <ul className="flex flex-col gap-3">
               <li>
                 <Link to="/" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">
-                  Inicio
+                  {t("nav_home")}
                 </Link>
               </li>
               <li>
                 <Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">
-                  Servicios
+                  {t("nav_services")}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">
-                  Nosotros
+                  {t("nav_about")}
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">
-                  Contacto
+                  {t("nav_contact")}
                 </Link>
               </li>
             </ul>
@@ -99,35 +101,35 @@ export default function Footer() {
 
           <div>
             <h4 className="text-[#4facec] font-semibold uppercase text-xs tracking-widest mb-5">
-              Servicios
+              {t("footer_services")}
             </h4>
             <ul className="flex flex-col gap-3">
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Show de Robot LED</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Hora Loca</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Bazuca de CO2</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Confeti</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Party Poppers</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Muñecos Cabezones</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">DJ Privado</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Dry Ice & Niebla Baja</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Chispas Frías</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Photobooth 360</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Bodas</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Quinceañeras</Link></li>
-              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">Eventos Corporativos</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_robot")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_hora")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_co2")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_confeti")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_poppers")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_cabezones")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_dj")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_dryice")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_chispas")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_photobooth")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_bodas")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_15")}</Link></li>
+              <li><Link to="/services" className="text-gray-400 text-sm hover:text-[#4facec] transition-colors cursor-pointer">{t("footer_service_corporate")}</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-[#4facec] font-semibold uppercase text-xs tracking-widest mb-5">
-              Contacto
+              {t("footer_contact")}
             </h4>
             <ul className="flex flex-col gap-4">
               <li className="flex items-start gap-3">
                 <div className="w-5 h-5 flex items-center justify-center mt-0.5">
                   <i className="ri-map-pin-line text-[#4facec]"></i>
                 </div>
-                <span className="text-gray-400 text-sm">Port Chester, NY, Estados Unidos, 10573</span>
+                <span className="text-gray-400 text-sm">{t("footer_location")}</span>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-5 h-5 flex items-center justify-center mt-0.5">
@@ -194,8 +196,8 @@ export default function Footer() {
                   <i className="ri-time-line text-[#4facec]"></i>
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Siempre Abierto</p>
-                  <p className="text-[#4facec] text-xs mt-1">Disponibilidad 24/7 para Eventos</p>
+                  <p className="text-gray-400 text-sm">{t("always_open")}</p>
+                  <p className="text-[#4facec] text-xs mt-1">{t("availability_24_7")}</p>
                 </div>
               </li>
             </ul>
@@ -204,17 +206,24 @@ export default function Footer() {
 
         <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/50 text-xs font-medium">
-            © 2026 MAP Robot Entertainment. Todos los derechos reservados.
+            {t("footer_rights")}
           </p>
           <div className="flex items-center gap-3">
+            <button
+              onClick={async () => setLanguage(currentLang === "es" ? "en" : "es")}
+              className="text-white/30 text-[10px] hover:text-white/50 transition-colors cursor-pointer flex items-center gap-1"
+            >
+              <i className="ri-global-line" />
+              {currentLang === "es" ? "English" : "Español"}
+            </button>
             <a
               href="/site-manager"
               className="text-white/30 text-[10px] hover:text-white/50 transition-colors cursor-pointer"
             >
-              Administrador del Sitio
+              {t("footer_site_manager")}
             </a>
             <p className="text-white/50 text-xs font-medium">
-              Port Chester, Nueva York — Sirviendo NY, CT, NJ
+              {t("footer_location")}
             </p>
           </div>
         </div>
