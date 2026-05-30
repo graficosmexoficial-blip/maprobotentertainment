@@ -4,6 +4,7 @@ import Home from "../pages/home/page";
 import About from "../pages/about/page";
 import Services from "../pages/services/page";
 import Contact from "../pages/contact/page";
+import Quote from "../pages/quote/page";
 import SiteManager from "../pages/site-manager/page";
 import AdminPage from "../pages/admin/page";
 import AuthCallback from "../pages/auth/callback/page";
@@ -24,6 +25,10 @@ const routes: RouteObject[] = [
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/quote",
+    element: <Quote />,
   },
   {
     path: "/site-manager",

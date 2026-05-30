@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useQuote } from "@/contexts/QuoteContext";
 
-function ServiceCard({ s }: { s: { title: string; desc: string; img: string; icon: string } }) {
+function ServiceCard({ s }: { s: { title: string; desc: string; img: string; icon: string; serviceId: string } }) {
   const { t } = useLanguage();
+  const { addItem, hasItem } = useQuote();
+  const added = hasItem(s.serviceId);
+
   return (
     <div className="group relative bg-[#1a1a1a] rounded-2xl overflow-hidden cursor-pointer border border-white/10 hover:border-[#4facec]/50 transition-all duration-300">
       <div className="w-full h-52 overflow-hidden relative">
@@ -16,12 +20,33 @@ function ServiceCard({ s }: { s: { title: string; desc: string; img: string; ico
         <div className="absolute top-3 right-3 w-9 h-9 flex items-center justify-center bg-[#4facec] rounded-xl">
           <i className={`${s.icon} text-white text-base`} />
         </div>
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addItem(s.serviceId, s.img, s.icon);
+            }}
+            className={`whitespace-nowrap text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1.5 transition-all cursor-pointer ${
+              added
+                ? "bg-green-600 hover:bg-green-500"
+                : "bg-[#4facec] hover:bg-[#3d9ce6]"
+            }`}
+          >
+            {added ? (
+              <>
+                <i className="ri-check-line" /> {t("quote_added")}
+              </>
+            ) : (
+              <>
+                <i className="ri-add-circle-line" /> {t("quote_add")}
+              </>
+            )}
+          </button>
           <Link
-            className="whitespace-nowrap bg-[#4facec] text-white text-xs font-bold px-4 py-1.5 rounded-full flex items-center gap-1.5"
+            className="whitespace-nowrap bg-[#111111]/90 text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1"
             to="/contact"
           >
-            <i className="ri-arrow-right-circle-line" /> {t("services_get_quote")}
+            {t("services_get_quote")}
           </Link>
         </div>
       </div>
@@ -43,36 +68,42 @@ export default function ServicesPage() {
       desc: t("service_robot_desc"),
       img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/d588e5ab54f9c0ab3017c9e08a1bcce8.png",
       icon: "ri-lightbulb-flash-line",
+      serviceId: "robot",
     },
     {
       title: t("service_hora_title"),
       desc: t("service_hora_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/03ce3bf9-bd5c-4f26-9585-c91c72f0252c_IMG_0629.jpg?v=fcd672a7ce915086a643c785a64a0648",
       icon: "ri-fire-line",
+      serviceId: "hora",
     },
     {
       title: t("service_15_title"),
       desc: t("service_15_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/4e58eb80-f950-4a99-b00a-0d31462e6265_IMG_0248.jpg?v=fa1f93661f5df6b6b9c58559c3d00777",
       icon: "ri-cake-3-line",
+      serviceId: "quince",
     },
     {
       title: t("service_co2_title"),
       desc: t("service_co2_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/250602d4-be15-46f1-b828-71cc7c4e89f9_magnific_creame-una-foto-en-donde-_3004892059-2.png?v=ec97826a62581d568be1d8f82a8d091a",
       icon: "ri-windy-line",
+      serviceId: "co2",
     },
     {
       title: t("service_confeti_title"),
       desc: t("service_confeti_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258",
       icon: "ri-vip-diamond-line",
+      serviceId: "confeti",
     },
     {
       title: t("service_poppers_title"),
       desc: t("service_poppers_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7",
       icon: "ri-flashlight-line",
+      serviceId: "poppers",
     },
   ];
 
@@ -82,36 +113,42 @@ export default function ServicesPage() {
       desc: t("service_bodas_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68",
       icon: "ri-heart-3-line",
+      serviceId: "bodas",
     },
     {
       title: t("service_cabezones_title"),
       desc: t("service_cabezones_desc"),
       img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png",
       icon: "ri-emotion-laugh-line",
+      serviceId: "cabezones",
     },
     {
       title: t("service_dj_title"),
       desc: t("service_dj_desc"),
       img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/e8b998673d2c6d02e5307b7a12a4c0f7.png",
       icon: "ri-music-2-line",
+      serviceId: "dj",
     },
     {
       title: t("service_dryice_title"),
       desc: t("service_dryice_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef",
       icon: "ri-cloud-line",
+      serviceId: "dryice",
     },
     {
       title: t("service_chispas_title"),
       desc: t("service_chispas_desc"),
       img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889",
       icon: "ri-fire-line",
+      serviceId: "chispas",
     },
     {
       title: t("service_photobooth_title"),
       desc: t("service_photobooth_desc"),
       img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png",
       icon: "ri-camera-lens-line",
+      serviceId: "photobooth",
     },
   ];
 
@@ -155,7 +192,7 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {servicesFirst.map((s) => (
-                <ServiceCard key={s.title} s={s} />
+                <ServiceCard key={s.serviceId} s={s} />
               ))}
             </div>
           </div>
@@ -190,7 +227,7 @@ export default function ServicesPage() {
           <div className="max-w-7xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {servicesSecond.map((s) => (
-                <ServiceCard key={s.title} s={s} />
+                <ServiceCard key={s.serviceId} s={s} />
               ))}
             </div>
           </div>
