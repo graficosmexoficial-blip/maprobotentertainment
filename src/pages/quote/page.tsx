@@ -41,26 +41,47 @@ export default function QuotePage() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const message = String(formData.get("message") || "");
     const serviceNames = items
       .map((item) => t(TITLE_KEYS[item.serviceId] || "") || item.serviceId)
       .join(", ");
 
-    const { error } = await supabase.from("contact_submissions").insert({
-      name: String(formData.get("name") || ""),
-      phone: String(formData.get("phone") || ""),
-      email: String(formData.get("email") || ""),
-      service_needed: serviceNames,
-      message: String(formData.get("message") || ""),
-      source: "quote-builder",
-      status: "new",
-    });
+    try {
+      // Send email notification via Readdy form service
+      const body = new URLSearchParams();
+      body.append("name", name);
+      body.append("phone", phone);
+      body.append("email", email);
+      body.append("services", serviceNames);
+      body.append("message", message);
 
-    setSubmitting(false);
-    if (error) {
-      setSubmitError(t("contact_form_error"));
-    } else {
+      const [formRes] = await Promise.all([
+        fetch("https://readdy.ai/api/form/d8lcq60m1jqlm5gfvrcg", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        }),
+        supabase.from("contact_submissions").insert({
+          name,
+          phone,
+          email,
+          service_needed: serviceNames,
+          message,
+          source: "quote-builder",
+          status: "new",
+        }),
+      ]);
+
+      if (!formRes.ok) throw new Error("form_error");
       setSubmitted(true);
       clearItems();
+    } catch {
+      setSubmitError(t("contact_form_error"));
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -175,6 +196,7 @@ export default function QuotePage() {
 
                   <form
                     id="quote-form"
+                    data-readdy-form
                     className="flex flex-col gap-5"
                     onSubmit={handleSubmit}
                   >

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UserAuthMenu from "@/components/feature/UserAuthMenu";
+import { useSiteMedia } from "@/hooks/useSiteMedia";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
@@ -14,6 +15,9 @@ export default function Header() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const { getMedia } = useSiteMedia("INICIO");
+  const logoUrl = getMedia("footer-logo", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893");
 
   const isHome = location.pathname === "/";
 
@@ -45,11 +49,16 @@ export default function Header() {
       <div className="w-full">
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-28">
           <Link to="/" className="flex items-center cursor-pointer">
-            <img
-              alt="MAP Robot Entertainment"
-              className="h-20 w-auto object-contain rounded-lg"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893"
-            />
+            {logoUrl ? (
+              <img
+                alt="MAP Robot Entertainment"
+                className="h-20 w-auto object-contain rounded-lg"
+                src={logoUrl}
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              />
+            ) : (
+              <span className="text-white font-extrabold text-xl tracking-wider">MAP<span className="text-[#4facec]"> Robot</span></span>
+            )}
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">

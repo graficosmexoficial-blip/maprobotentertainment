@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import { useSiteMedia } from "@/hooks/useSiteMedia";
 import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "../home/components/Header";
@@ -12,7 +13,11 @@ export default function Contact() {
   const [submitError, setSubmitError] = useState("");
   const [charCount, setCharCount] = useState(0);
   const { get } = useSiteContent();
+  const { getMedia } = useSiteMedia("INICIO");
   const { t, language } = useLanguage();
+
+  const heroVideo = getMedia("hero-video", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f");
+  const logoUrl = getMedia("footer-logo", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,21 +26,44 @@ export default function Contact() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const { error } = await supabase.from("contact_submissions").insert({
-      name: String(formData.get("name") || ""),
-      phone: String(formData.get("phone") || ""),
-      email: String(formData.get("email") || ""),
-      service_needed: String(formData.get("serviceNeeded") || ""),
-      message: String(formData.get("message") || ""),
-      source: "contact-form",
-      status: "new",
-    });
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const serviceNeeded = String(formData.get("serviceNeeded") || "");
+    const message = String(formData.get("message") || "");
 
-    setSubmitting(false);
-    if (error) {
-      setSubmitError(t("contact_form_error"));
-    } else {
+    try {
+      // Send email notification via Readdy form service
+      const body = new URLSearchParams();
+      body.append("name", name);
+      body.append("phone", phone);
+      body.append("email", email);
+      body.append("serviceNeeded", serviceNeeded);
+      body.append("message", message);
+
+      const [formRes] = await Promise.all([
+        fetch("https://readdy.ai/api/form/d8lcq58m1jqlm5gfvrc0", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        }),
+        supabase.from("contact_submissions").insert({
+          name,
+          phone,
+          email,
+          service_needed: serviceNeeded,
+          message,
+          source: "contact-form",
+          status: "new",
+        }),
+      ]);
+
+      if (!formRes.ok) throw new Error("form_error");
       setSubmitted(true);
+    } catch {
+      setSubmitError(t("contact_form_error"));
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -53,7 +81,7 @@ export default function Contact() {
               muted
               aria-label="Contacta a MAP Robot Entertainment Port Chester Nueva York"
               className="w-full h-full object-cover object-center"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
+              src={heroVideo}
             />
             <div className="absolute inset-0 bg-[#111111]/75" />
           </div>
@@ -142,7 +170,7 @@ export default function Contact() {
                   <img
                     alt="MAP Robot Entertainment Logo"
                     className="w-36 h-auto object-contain mb-6 rounded-xl"
-                    src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893"
+                    src={logoUrl}
                   />
                   <h2 className="text-white text-xl font-extrabold leading-snug">
                     {t("contact_info_title")}<br />
@@ -208,6 +236,7 @@ export default function Contact() {
                   ) : (
                     <form
                       id="contact-page-form"
+                      data-readdy-form
                       className="flex flex-col gap-5"
                       onSubmit={handleSubmit}
                     >

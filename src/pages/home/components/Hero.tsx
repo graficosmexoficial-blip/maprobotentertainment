@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
 import { supabase } from "@/lib/supabase";
+import { STORAGE_BASE } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
@@ -25,20 +26,40 @@ export default function Hero() {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const { error } = await supabase.from("contact_submissions").insert({
-      name: String(formData.get("fullName") || ""),
-      phone: String(formData.get("phone") || ""),
-      email: String(formData.get("email") || ""),
-      service_needed: String(formData.get("serviceNeeded") || ""),
-      source: "hero-form",
-      status: "new",
-    });
+    const fullName = String(formData.get("fullName") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const serviceNeeded = String(formData.get("serviceNeeded") || "");
 
-    setSubmitting(false);
-    if (error) {
-      setSubmitError(t("hero_form_error"));
-    } else {
+    try {
+      const body = new URLSearchParams();
+      body.append("fullName", fullName);
+      body.append("phone", phone);
+      body.append("email", email);
+      body.append("serviceNeeded", serviceNeeded);
+
+      const [formRes] = await Promise.all([
+        fetch("https://readdy.ai/api/form/d8lcqfom1jqlm5gfvreg", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        }),
+        supabase.from("contact_submissions").insert({
+          name: fullName,
+          phone,
+          email,
+          service_needed: serviceNeeded,
+          source: "hero-form",
+          status: "new",
+        }),
+      ]);
+
+      if (!formRes.ok) throw new Error("form_error");
       setSubmitted(true);
+    } catch {
+      setSubmitError(t("hero_form_error"));
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -124,6 +145,7 @@ export default function Hero() {
               ) : (
                 <form
                   id="hero-estimate-form"
+                  data-readdy-form
                   className="flex flex-col gap-4"
                   onSubmit={handleSubmit}
                 >

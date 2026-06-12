@@ -47,7 +47,12 @@ export function useSiteMedia(section: string) {
   const getMedia = useCallback(
     (key: string, fallback: string): string => {
       const found = items.find((i) => i.media_key === key);
-      return found?.url || fallback;
+      if (!found?.url) return fallback;
+      // Si la URL apunta al bucket de Supabase vacío, usar fallback
+      if (found.url.includes('helloreaddy.com') || found.url.includes('/storage/v1/object/public/site-assets/')) {
+        return fallback || found.url;
+      }
+      return found.url;
     },
     [items]
   );

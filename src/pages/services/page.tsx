@@ -3,6 +3,7 @@ import Header from "../home/components/Header";
 import Footer from "../home/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuote } from "@/contexts/QuoteContext";
+import { useSiteMedia } from "@/hooks/useSiteMedia";
 
 function ServiceCard({ s }: { s: { title: string; desc: string; img: string; icon: string; serviceId: string } }) {
   const { t } = useLanguage();
@@ -61,47 +62,53 @@ function ServiceCard({ s }: { s: { title: string; desc: string; img: string; ico
 
 export default function ServicesPage() {
   const { t } = useLanguage();
+  const { getMedia: getServiciosMedia } = useSiteMedia("SERVICIOS");
+  const { getMedia: getInicioMedia } = useSiteMedia("INICIO");
+
+  const heroVideo = getInicioMedia("hero-video", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f");
+  const ctaBannerBg = getServiciosMedia("service-hora-loca", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/70503375736b6ace7fe0112e684a5146.png");
+  const finalCtaBg = getServiciosMedia("final-cta", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/34fe7ad5-7308-499d-817c-ed43fd8924b9_magnific_hazme-una-foto-realistas-_3004906578.png?v=4fef05408125de5cf5472996c084eba6");
 
   const servicesFirst = [
     {
       title: t("service_robot_title"),
       desc: t("service_robot_desc"),
-      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/d588e5ab54f9c0ab3017c9e08a1bcce8.png",
+      img: getServiciosMedia("service-robot-led", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/d588e5ab54f9c0ab3017c9e08a1bcce8.png"),
       icon: "ri-lightbulb-flash-line",
       serviceId: "robot",
     },
     {
       title: t("service_hora_title"),
       desc: t("service_hora_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/03ce3bf9-bd5c-4f26-9585-c91c72f0252c_IMG_0629.jpg?v=fcd672a7ce915086a643c785a64a0648",
+      img: getServiciosMedia("service-hora-loca", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/03ce3bf9-bd5c-4f26-9585-c91c72f0252c_IMG_0629.jpg?v=fcd672a7ce915086a643c785a64a0648"),
       icon: "ri-fire-line",
       serviceId: "hora",
     },
     {
       title: t("service_15_title"),
       desc: t("service_15_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/4e58eb80-f950-4a99-b00a-0d31462e6265_IMG_0248.jpg?v=fa1f93661f5df6b6b9c58559c3d00777",
+      img: getServiciosMedia("service-quince", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/4e58eb80-f950-4a99-b00a-0d31462e6265_IMG_0248.jpg?v=fa1f93661f5df6b6b9c58559c3d00777"),
       icon: "ri-cake-3-line",
       serviceId: "quince",
     },
     {
       title: t("service_co2_title"),
       desc: t("service_co2_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/250602d4-be15-46f1-b828-71cc7c4e89f9_magnific_creame-una-foto-en-donde-_3004892059-2.png?v=ec97826a62581d568be1d8f82a8d091a",
+      img: getServiciosMedia("service-co2", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/250602d4-be15-46f1-b828-71cc7c4e89f9_magnific_creame-una-foto-en-donde-_3004892059-2.png?v=ec97826a62581d568be1d8f82a8d091a"),
       icon: "ri-windy-line",
       serviceId: "co2",
     },
     {
       title: t("service_confeti_title"),
       desc: t("service_confeti_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258",
+      img: getServiciosMedia("service-confeti", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/3262ffbb-4118-4113-b07f-23fafeca12a2_484407683_622784440555400_1975758362729952323_n-1.jpg?v=ef56c01f6b547b47c41dd411b0bcb258"),
       icon: "ri-vip-diamond-line",
       serviceId: "confeti",
     },
     {
       title: t("service_poppers_title"),
       desc: t("service_poppers_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7",
+      img: getServiciosMedia("service-party-poppers", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f8bb8b95-555a-46a9-8934-1857771ebcb4_magnific_me-puedes-crear-una-image_e8JY3vsdqL.png?v=b84df48dfff75e4430b685d6950859d7"),
       icon: "ri-flashlight-line",
       serviceId: "poppers",
     },
@@ -111,42 +118,42 @@ export default function ServicesPage() {
     {
       title: t("service_bodas_title"),
       desc: t("service_bodas_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68",
+      img: getServiciosMedia("service-bodas", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/aceddab2-b7d8-4d00-8469-2b0020f0cd28_magnific_hazme-una-foto-realistas-_3004925656.png?v=8e6d104f1c26286d5683440d6a7cbb68"),
       icon: "ri-heart-3-line",
       serviceId: "bodas",
     },
     {
       title: t("service_cabezones_title"),
       desc: t("service_cabezones_desc"),
-      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png",
+      img: getServiciosMedia("service-munecos", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/fb829ade6fe8b7beba9d3a565945ab04.png"),
       icon: "ri-emotion-laugh-line",
       serviceId: "cabezones",
     },
     {
       title: t("service_dj_title"),
       desc: t("service_dj_desc"),
-      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/e8b998673d2c6d02e5307b7a12a4c0f7.png",
+      img: getServiciosMedia("service-dj", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/e8b998673d2c6d02e5307b7a12a4c0f7.png"),
       icon: "ri-music-2-line",
       serviceId: "dj",
     },
     {
       title: t("service_dryice_title"),
       desc: t("service_dryice_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef",
+      img: getServiciosMedia("service-dry-ice", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/36f49c15-3452-4037-ab2e-db86ee7b2638_magnific_quisiera-que-esta-foto-se_5xTa9V4Kxe.png?v=ef383b2681e6988529723c79fe5b18ef"),
       icon: "ri-cloud-line",
       serviceId: "dryice",
     },
     {
       title: t("service_chispas_title"),
       desc: t("service_chispas_desc"),
-      img: "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889",
+      img: getServiciosMedia("service-chispas", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/e3410fe6-47ad-4df3-870a-4a112ed6a144_WhatsApp-Image-2026-05-20-at-8.59.58-AM.jpeg?v=5b5b3a544d12480261a087b1ef4b0889"),
       icon: "ri-fire-line",
       serviceId: "chispas",
     },
     {
       title: t("service_photobooth_title"),
       desc: t("service_photobooth_desc"),
-      img: "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png",
+      img: getServiciosMedia("service-fotobooth", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/8b8a33dd513fcdab1ae219722d0e5e4e.png"),
       icon: "ri-camera-lens-line",
       serviceId: "photobooth",
     },
@@ -158,15 +165,19 @@ export default function ServicesPage() {
       <main>
         <section className="relative pt-36 pb-16 overflow-hidden">
           <div className="absolute inset-0">
-            <video
-              autoPlay
-              loop
-              playsInline
-              muted
-              aria-label="MAP Robot Entertainment servicios show de robot LED Nueva York"
-              className="w-full h-full object-cover object-center"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
-            />
+            {heroVideo ? (
+              <video
+                autoPlay
+                loop
+                playsInline
+                muted
+                aria-label="MAP Robot Entertainment servicios show de robot LED Nueva York"
+                className="w-full h-full object-cover object-center"
+                src={heroVideo}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#111111]" />
+            )}
             <div className="absolute inset-0 bg-[#111111]/75" />
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex justify-center">
@@ -200,11 +211,15 @@ export default function ServicesPage() {
 
         <section className="relative py-24 overflow-hidden">
           <div className="absolute inset-0">
-            <img
-              alt="Reserva MAP Robot Entertainment show de robot LED para tu próximo evento"
-              className="w-full h-full object-cover object-[center_20%]"
-              src="https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/70503375736b6ace7fe0112e684a5146.png"
-            />
+            {ctaBannerBg ? (
+              <img
+                alt="Reserva MAP Robot Entertainment show de robot LED para tu próximo evento"
+                className="w-full h-full object-cover object-[center_20%]"
+                src={ctaBannerBg}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#111111]" />
+            )}
             <div className="absolute inset-0 bg-[#111111]/80" />
           </div>
           <div className="relative z-10 max-w-xl mx-auto px-4 md:px-6 text-center">
@@ -235,11 +250,15 @@ export default function ServicesPage() {
 
         <section className="relative py-28 overflow-hidden flex items-center justify-center mb-16">
           <div className="absolute inset-0">
-            <img
-              alt="MAP Robot Entertainment listo para iluminar tu próximo evento"
-              className="w-full h-full object-cover object-top"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/34fe7ad5-7308-499d-817c-ed43fd8924b9_magnific_hazme-una-foto-realistas-_3004906578.png?v=4fef05408125de5cf5472996c084eba6"
-            />
+            {finalCtaBg ? (
+              <img
+                alt="MAP Robot Entertainment listo para iluminar tu próximo evento"
+                className="w-full h-full object-cover object-top"
+                src={finalCtaBg}
+              />
+            ) : (
+              <div className="w-full h-full bg-[#111111]" />
+            )}
             <div className="absolute inset-0 bg-[#111111]/75" />
           </div>
           <div className="relative z-10 flex justify-center w-full px-4 md:px-6">

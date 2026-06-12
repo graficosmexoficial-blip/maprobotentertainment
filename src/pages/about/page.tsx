@@ -9,7 +9,8 @@ import Footer from "../home/components/Footer";
 export default function About() {
   const [openFaq, setOpenFaq] = useState(0);
   const { get } = useSiteContent();
-  const { getMedia } = useSiteMedia("ABOUT");
+  const { getMedia } = useSiteMedia("NOSOTROS");
+  const { getMedia: getInitioMedia } = useSiteMedia("INICIO");
   const { t, language } = useLanguage();
 
   const faqs = [
@@ -48,15 +49,11 @@ export default function About() {
     { icon: "ri-time-line", label: t("about_value6") },
   ];
 
-  const faqImage = getMedia(
-    "about-faq-image",
-    "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/bd4ecea6cec6055361e87941d236b84c.jpeg"
-  );
-
-  const storyImage = getMedia(
-    "about-story-image",
-    "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/976d153f-253a-4ff7-ad66-33b4f80239b2_IMG_0358.jpg?v=30d054eae7a9c8353fae3ac5284f7817"
-  );
+  const faqImage = getMedia("faq-image", "https://static.readdy.ai/image/3ce9d24c92e6c33dbaca65a0380531ab/bd4ecea6cec6055361e87941d236b84c.jpeg");
+  const storyImage = getMedia("story-image", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/976d153f-253a-4ff7-ad66-33b4f80239b2_IMG_0358.jpg?v=30d054eae7a9c8353fae3ac5284f7817");
+  const ctaBannerBg = getMedia("cta-banner", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f20d1c73-1b3c-4908-84fe-88ea081a8666_677149541_928146753372013_7091196280485826080_n.jpg?v=c83fc433256257c5c53af1374d2d15f4");
+  const valuesImage = getMedia("values-image", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/021cd063-63d8-49b6-8e47-8f6aec5d2883_WhatsApp-Image-2026-05-19-at-2.19.13-PM-1.jpeg?v=52b90b969a73e43300cb9e06af8e63b9");
+  const heroVideo = getInitioMedia("hero-video", "https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f");
 
   return (
     <div className="min-h-screen bg-[#0d0d0d]">
@@ -72,7 +69,7 @@ export default function About() {
               muted
               aria-label="MAP Robot Entertainment show de robot LED performance"
               className="w-full h-full object-cover object-center"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/5a12f5b9-68b7-47e6-b661-8055d89bfec0_423423.mp4?v=2c7ee5cbe95f9426dfeecd4aea39862f"
+              src={heroVideo}
             />
             <div className="absolute inset-0 bg-[#111111]/75" />
           </div>
@@ -169,7 +166,7 @@ export default function About() {
             <img
               alt="Reserva MAP Robot Entertainment show de robot LED para tu próximo evento"
               className="w-full h-full object-cover object-center"
-              src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/f20d1c73-1b3c-4908-84fe-88ea081a8666_677149541_928146753372013_7091196280485826080_n.jpg?v=c83fc433256257c5c53af1374d2d15f4"
+              src={ctaBannerBg}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/60 to-black/65" />
           </div>
@@ -264,7 +261,7 @@ export default function About() {
                 <img
                   alt="MAP Robot Entertainment performance con luces LED y efectos especiales"
                   className="w-full h-full object-cover object-center"
-                  src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/021cd063-63d8-49b6-8e47-8f6aec5d2883_WhatsApp-Image-2026-05-19-at-2.19.13-PM-1.jpeg?v=52b90b969a73e43300cb9e06af8e63b9"
+                  src={valuesImage}
                 />
                 <div className="absolute bottom-5 left-5 bg-[#111111]/90 text-white rounded-xl px-5 py-3 backdrop-blur-sm">
                   <p className="text-[#4facec] text-xs font-bold uppercase tracking-widest">

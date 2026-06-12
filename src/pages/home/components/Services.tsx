@@ -3,6 +3,7 @@ import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useQuote } from "@/contexts/QuoteContext";
+import { STORAGE_BASE } from "@/lib/storage";
 
 function HomeServiceCard({
   title,

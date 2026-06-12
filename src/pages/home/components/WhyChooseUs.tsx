@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { STORAGE_BASE } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function WhyChooseUs() {

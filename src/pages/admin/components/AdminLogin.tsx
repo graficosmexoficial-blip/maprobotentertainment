@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { STORAGE_BASE } from "@/lib/storage";
 
 export default function AdminLogin() {
   const [pass, setPass] = useState("");
@@ -23,7 +24,7 @@ export default function AdminLogin() {
           <img
             alt="MAP Robot"
             className="h-12 w-auto object-contain"
-            src="https://storage.readdy-site.link/project_files/6121d4b8-f034-4ba6-80cd-8d246ebadd63/a27ac3c3-dbf9-4849-83e5-4957e5e94ab3_aff17f747b134ccb95b0c51344fcc99e-1.png?v=560df2c84d57cceb4d73c1fa15a21893"
+            src={`${STORAGE_BASE}/logo.png`}
           />
         </div>
         <h1 className="text-center text-xl font-bold mb-6">Panel de Administración</h1>

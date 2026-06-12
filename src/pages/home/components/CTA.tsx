@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { STORAGE_BASE } from "@/lib/storage";
 
 export default function CTA() {
   const { get } = useSiteContent();

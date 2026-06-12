@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSiteMedia } from "@/hooks/useSiteMedia";
+import { STORAGE_BASE } from "@/lib/storage";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
